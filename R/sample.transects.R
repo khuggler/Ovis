@@ -8,7 +8,7 @@
 #' @export
 
 
-sample.transect<-function(ngroups, nsamps, maxdist){
+sample.transects<-function(ngroups, nsamps, maxdist){
 
   samples<-data.frame(Group = NA, Distance = NA, Azimuth = NA )
 
