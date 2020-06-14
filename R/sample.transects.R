@@ -5,7 +5,7 @@
 #' @param maxdist maximum distance (in meters) to sample from central group location
 #' @return Returns data.frame with sampled distance and azimuths for specified number of groups
 #' @keywords sample, transects, veg
-#' @export sample.transects
+#' @export
 
 
 sample.transect<-function(ngroups, nsamps, maxdist){
