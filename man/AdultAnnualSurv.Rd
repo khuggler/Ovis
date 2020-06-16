@@ -5,7 +5,7 @@
 \title{Conversion of adult capture data into the correct format for modeling annual survival}
 \usage{
 AdultAnnualSurv(dbpath, mortcol, dateformat, yearstart, yearend, idcol,
-  capcol, fatecol, cause, plot, title, spp, sex)
+  capcol, fatecol, censors, plot, title)
 }
 \arguments{
 \item{dbpath}{path to data.frame (csv) that contains a column of unique animal identifier, start date, mortality date, and cause of mortality (if applicable). If mortality has not occured, mortality date will be Sys.Date(), and event indicator will be 0}
@@ -24,11 +24,11 @@ AdultAnnualSurv(dbpath, mortcol, dateformat, yearstart, yearend, idcol,
 
 \item{fatecol}{name of column where fate/cause of mortality occurs}
 
+\item{censors}{vector of causes that require censoring (e.g. collarfailure, capturemort, etc.)}
+
 \item{plot}{logical. TRUE/FALSE. If TRUE, function will generate bar plot of yearly survival}
 
 \item{title}{desired title of survival plot (character)}
-
-\item{censors}{vector of causes that require censoring (e.g. collarfailure, capturemort, etc.)}
 }
 \value{
 Returns a data.frame with animal ID, start date of modeling, end date of modeling, status of animal (alive = 0, dead = 1), and number of months alive during time period

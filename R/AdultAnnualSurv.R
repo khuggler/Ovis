@@ -20,7 +20,7 @@
 #' \donttest{AdultSurv<-AdultAnnualSurv(dbpath = 'C:/Desktop/yourdb', mortcol = 'MortDate', dateformat = "%m/%d/%Y", yearstart = 2019, yearend = 2020 , idcol = 'AID', capcol = 'CaptureDate',fatecol = 'Cause', censors = c("CollarFailure", "CaptureMort"), plot = TRUE, title = 'Survival of Bighorn Sheep' }
 #'
 
-AdultAnnualSurv<-function(dbpath,mortcol,dateformat, yearstart, yearend, idcol, capcol, fatecol, cause, plot,title, spp, sex){
+AdultAnnualSurv<-function(dbpath,mortcol,dateformat, yearstart, yearend, idcol, capcol, fatecol, censors, plot,title){
   data<-read.csv(dbpath, stringsAsFactors = F)
   
   data[,mortcol]<-as.Date(data[,mortcol], format = dateformat)
