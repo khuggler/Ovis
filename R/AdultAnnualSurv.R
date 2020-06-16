@@ -17,7 +17,7 @@
 #' @keywords adult, annual, survival, kaplan-meier, analysis
 #' @export
 #' @examples
-#' \donttest{AdultSurv<-AdultAnnualSurv(dbpath = 'C:/Desktop/yourdb', mortcol = 'MortDate', dateformat = "%m/%d/%Y", yearstart = 2019, yearend = 2020 , idcol = 'AID', capcol = 'CaptureDate',fatecol = 'Cause', censors = c("CollarFailure", "CaptureMort"), plot = TRUE, title = 'Survival of Bighorn Sheep' }
+#' \donttest{AdultSurv<-AdultAnnualSurv(dbpath = 'C:/Desktop/yourdb', mortcol = 'MortDate', dateformat = "%m/%d/%Y", yearstart = 2019, yearend = 2020 , idcol = 'AID', capcol = 'CaptureDate',fatecol = 'Cause', censors = c("CollarFailure", "CaptureMort"), plot = TRUE, title = 'Survival of Bighorn Sheep')}
 #'
 
 AdultAnnualSurv<-function(dbpath,mortcol,dateformat, yearstart, yearend, idcol, capcol, fatecol, censors, plot,title){
