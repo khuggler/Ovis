@@ -41,8 +41,6 @@ to model annual survival.
 \examples{
 \donttest{AdultSurv<-AdultAnnualSurv(dbpath = 'C:/Desktop/yourdb', mortcol = 'MortDate', dateformat = "\%m/\%d/\%Y", yearstart = 2019, yearend = 2020 , idcol = 'AID', capcol = 'CaptureDate',fatecol = 'Cause', censors = c("CollarFailure", "CaptureMort"), plot = TRUE, title = 'Survival of Bighorn Sheep')}
 
-create dataframe with dates 
-this line will give the maximum date of survival (mortality date)
 }
 \keyword{adult,}
 \keyword{analysis}

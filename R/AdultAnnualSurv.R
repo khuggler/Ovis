@@ -26,7 +26,7 @@ AdultAnnualSurv<-function(dbpath,mortcol,dateformat, yearstart, yearend, idcol, 
   data[,mortcol]<-as.Date(data[,mortcol], format = dateformat)
   Year<-yearstart:yearend
   
-  #' create dataframe with dates 
+# create dataframe with dates 
   hist<-data.frame(Year = Year, StartDate = paste("01/01/", Year, sep = ""), EndDate = paste("12/31/", Year, sep = ""))
   hist$StartDate<-as.Date(hist$StartDate, format = "%m/%d/%Y")
   hist$EndDate<-as.Date(hist$EndDate, format = "%m/%d/%Y")
@@ -41,7 +41,7 @@ all.surv<-data.frame()
   for(k in 1:length(uni)){
     sub<-data[data[,idcol] == uni[k],]
     
-    #' this line will give the maximum date of survival (mortality date)
+    # this line will give the maximum date of survival (mortality date)
     date<-ifelse(is.na(unique(sub[nrow(sub),mortcol])) %in% FALSE,
                  as.character(max(sub[,mortcol], na.rm=T)), NA)
     
