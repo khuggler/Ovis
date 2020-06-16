@@ -1,16 +1,19 @@
 Package: Ovis
-Title: Functions to Maniuplate and Analyze BHS Data from Idaho,
-    Wyoming, and Washington
+Title: Tools to Manipulate, Collate, and Analyze BHS Data from
+    Idaho and Wyoming
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Katey",
            family = "Huggler",
            role = c("aut", "cre"),
            email = "khuggler@uidaho.edu")
-Description: This package is geared towards manipulating,
-    collating, and analyzing multiple formats of data from bighorn sheep
-    populations in Idaho, Wyoming, and Washington.
+Description: This package is intended to aid in
+    manipulating, collating, and analyzing animal and vegetation data
+    collected for bighorn sheep in Idaho and Wyoming
 License: None
+Imports: 
+    survival,
+    RColorBrewer
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

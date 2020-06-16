@@ -130,7 +130,7 @@ all.surv<-data.frame()
     }
     csurv<-data.frame(Year = yearend:yearstart, Surv = cumsurv$surv)
     csurv<-csurv[order(csurv$Year),]
-    library(RColorBrewer)
+  
     n<-length(unique(csurv$Year))
     cols<-brewer.pal(n = n, name = "Set1")
     barplot(csurv$Surv, col = cols, ylim = c(0,1), names.arg = csurv$Year, border = NA, main = title)
