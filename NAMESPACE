@@ -2,4 +2,5 @@
 
 export(AdultAnnualSurv)
 export(IFBFat)
+export(neonate.survival)
 export(sample.transects)
