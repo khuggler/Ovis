@@ -2,14 +2,15 @@
 #' @description Merge Raw GPS Data with AnimalID, Sex, and Eartag ID
 #' @param vecpath path where vec data is located
 #' @param sheepdb path to sheep capture database
+#' @tzone desired time zone of gps data: "MST" or "US/Pacific"
 #' @return Returns a data.frame with all gps data, AnimalID, Sex, and Species
 #' @keywords capture, animal ID, gps, append
 #' @export
 #' @examples
 #'
 
-sheep.gps<-function(vecpath, sheepdb){
-  sheep.dat<-Part::getVec(vecpath)
+sheep.gps<-function(vecpath, sheepdb, tzone){
+  sheep.dat<-Part::getVec(vecpath, tzone)
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
   sheep.dat<-sheep.dat[sheep.dat$CollarSerialNumber %in% sheep.db$SerialNumber,]
 

@@ -4,7 +4,7 @@
 \alias{sheep.gps}
 \title{sheep.gps}
 \usage{
-sheep.gps(vecpath, sheepdb)
+sheep.gps(vecpath, sheepdb, tzone)
 }
 \arguments{
 \item{vecpath}{path where vec data is located}
