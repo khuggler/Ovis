@@ -10,7 +10,7 @@
 #'
 
 sheep.gps<-function(vecpath, sheepdb, tzone){
-  sheep.dat<-Part::getVec(vecpath, tzone)
+  sheep.dat<-Ovis::getVec(vecpath, tzone)
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
   sheep.dat<-sheep.dat[sheep.dat$CollarSerialNumber %in% sheep.db$SerialNumber,]
 
