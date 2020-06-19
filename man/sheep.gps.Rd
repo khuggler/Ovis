@@ -10,6 +10,8 @@ sheep.gps(vecpath, sheepdb, tzone)
 \item{vecpath}{path where vec data is located}
 
 \item{sheepdb}{path to sheep capture database}
+
+\item{tzone}{desired time zone of gps data: "MST" or "US/Pacific"}
 }
 \value{
 Returns a data.frame with all gps data, AnimalID, Sex, and Species
