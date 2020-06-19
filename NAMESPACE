@@ -2,5 +2,6 @@
 
 export(AdultAnnualSurv)
 export(IFBFat)
+export(getVec)
 export(neonate.survival)
 export(sample.transects)
