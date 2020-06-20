@@ -12,7 +12,10 @@
 sheep.gps<-function(vecpath, sheepdb, tzone){
   sheep.dat<-Ovis::getVec(vecpath, tzone)
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
-  sheep.dat<-sheep.dat[sheep.dat$CollarSerialNumber %in% sheep.db$SerialNumber,]
+  
+  #sheep.dat<-data.frame(sheep.dat)
+  sheep2<-sheep.dat
+  sheep2<-sheep2[sheep2$CollarSerialNumber %in% sheep.db$SerialNumber,]
 
   sheep.db$CapDate<-as.Date(sheep.db$CapDate, format = '%m/%d/%Y')
   sheep.db$MortDate<-ifelse(is.na(sheep.db$MortDate), as.character(Sys.Date()), as.character(sheep.db$MortDate))
