@@ -4,7 +4,8 @@
 \alias{sheep.gps}
 \title{sheep.gps}
 \usage{
-sheep.gps(vecpath, sheepdb, tzone)
+sheep.gps(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mortcol,
+  extracols)
 }
 \arguments{
 \item{vecpath}{path where vec data is located}
@@ -12,9 +13,19 @@ sheep.gps(vecpath, sheepdb, tzone)
 \item{sheepdb}{path to sheep capture database}
 
 \item{tzone}{desired time zone of gps data: "MST" or "US/Pacific"}
+
+\item{serialcol}{name of column in capture datebase/lookup table where Serial Number exists}
+
+\item{capcol}{name of column where capture/start date exists}
+
+\item{mortcol}{name of column where mortality date or end date exists}
+
+\item{extracols}{vector of extracolumns that should be appended to GPS data. Names in vector MUCH match named in lookup table}
+
+\item{format}{that date columns are in e.g. "%m/%d/%Y"}
 }
 \value{
-Returns a data.frame with all gps data, AnimalID, Sex, and Species
+Returns a data.frame with all gps data and any extra columns desired
 }
 \description{
 Merge Raw GPS Data with AnimalID, Sex, and Eartag ID
