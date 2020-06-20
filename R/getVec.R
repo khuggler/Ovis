@@ -18,7 +18,11 @@
 getVec<-function(vecpath, tzone){
 
   llist<-list.files(vecpath,
-                    pattern='GPS_Default.csv',full.names=T)
+                    pattern=c('GPS_Default.csv'),full.names=T)
+
+  llist2<-list.files(vecpath, pattern = 'GPS_Default Storage.csv', full.names = T)
+
+  llist<-c(llist, llist2)
 
   vdat<-data.frame()
   for(i in 1:length(llist)){
