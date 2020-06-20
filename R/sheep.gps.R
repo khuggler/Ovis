@@ -14,15 +14,17 @@ sheep.gps<-function(vecpath, sheepdb, tzone){
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
   
   #sheep.dat<-data.frame(sheep.dat)
-  sheep2<-sheep.dat
-  sheep2<-sheep2[sheep2$CollarSerialNumber %in% sheep.db$SerialNumber,]
+  #sheep2<-sheep.dat
+  sheep.dat<-sheep.dat[sheep.dat$CollarSerialNumber %in% sheep.db$SerialNumber,]
 
   sheep.db$CapDate<-as.Date(sheep.db$CapDate, format = '%m/%d/%Y')
+  
+  sheep.db$MortDate<-as.Date(sheep.db$MortDate, format = "%m/%d/%Y")
   sheep.db$MortDate<-ifelse(is.na(sheep.db$MortDate), as.character(Sys.Date()), as.character(sheep.db$MortDate))
-  sheep.db$MortDate<-as.Date(sheep.db$MortDate, format = '%Y-%m-%d')
+  sheep.db$MortDate<-as.Date(sheep.db$MortDate, tryFormats = c('%Y-%m-%d', "%m/%d/%Y"))
 
   sheep.dat$Date<-as.character(strptime(sheep.dat$TelemDate, format = "%Y-%m-%d"))
-  sheep.dat$Date<-as.Date(sheep.dat$Date, format = '%Y-%m-%d')
+  sheep.dat$Date<-as.Date(sheep.dat$Date, tryFormats = c('%Y-%m-%d', "%m/%d/%Y"))
 
   sheep.dat<-data.frame(sheep.dat)
 
