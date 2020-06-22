@@ -40,7 +40,7 @@ sheep.gps<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mort
     sub.sheep<-sheep.dat[sheep.dat$CollarSerialNumber == uni[i],]
     sub.dat<-sheep.db[sheep.db[, serialcol] == uni[i],]
 
-    new.sub<-sub.sheep[sub.sheep$Date > sub.dat$CapDate & sub.sheep$Date <= sub.dat$MortDate, ]
+    new.sub<-sub.sheep[sub.sheep$Date > sub.dat$CapDate & sub.sheep$Date < sub.dat$MortDate, ]
 
     if(length(extracols) > 0){
       for(l in 1:length(extracols)){
