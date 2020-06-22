@@ -53,6 +53,5 @@ sheep.gps<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mort
   }
 
 
-    print(i)
   return(final.sheep)
 }
