@@ -18,11 +18,11 @@ sheep.gps(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mortcol,
 
 \item{capcol}{name of column where capture/start date exists}
 
+\item{dateformat}{character string of the format that date columns are in}
+
 \item{mortcol}{name of column where mortality date or end date exists}
 
 \item{extracols}{vector of extracolumns that should be appended to GPS data. Names in vector MUCH match named in lookup table}
-
-\item{format}{that date columns are in e.g. "%m/%d/%Y"}
 }
 \value{
 Returns a data.frame with all gps data and any extra columns desired
