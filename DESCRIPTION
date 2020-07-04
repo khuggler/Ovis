@@ -13,7 +13,10 @@ Description: This package is intended to aid in
 License: None
 Imports: 
     survival,
-    RColorBrewer
+    sp,
+    rgdal,
+    ggplot2,
+    ncdf4,
+    raster
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
