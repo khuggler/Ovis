@@ -1,6 +1,6 @@
 #' @title IFBFat
 #' @description calculate IFBFat for bighorn sheep
-#' @param dbpath path to location of capture database or where fat measurements are stored
+#' @param db dataframe of capture database
 #' @param rumpfat name of column where rump fat measurement exists
 #' @param units character. whether rump fat measurement is in "cm" or "mm"
 #' @param bcs name of column where body condition score exists

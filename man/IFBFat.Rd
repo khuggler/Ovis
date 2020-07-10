@@ -8,8 +8,6 @@ IFBFat(dbpath, rumpfat, units, bcs, append = TRUE, summary = TRUE,
   sumcols)
 }
 \arguments{
-\item{dbpath}{path to location of capture database or where fat measurements are stored}
-
 \item{rumpfat}{name of column where rump fat measurement exists}
 
 \item{units}{character. whether rump fat measurement is in "cm" or "mm"}
@@ -21,6 +19,8 @@ IFBFat(dbpath, rumpfat, units, bcs, append = TRUE, summary = TRUE,
 \item{summary}{Logical. TRUE/FALSE. TRUE if a summary should be returned. Summary included mean, SE, and upper and lower 95% CIs calculated by categories of choice.}
 
 \item{sumcols}{vector of column names in database that should be aggregated on. Max categories == 3. Example: calculate summary of IFBFat by Sex and PMU}
+
+\item{db}{dataframe of capture database}
 }
 \value{
 Returns original capture database with IFBFat column appended
