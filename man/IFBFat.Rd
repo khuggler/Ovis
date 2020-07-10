@@ -4,7 +4,8 @@
 \alias{IFBFat}
 \title{IFBFat}
 \usage{
-IFBFat(dbpath, rumpfat, units, bcs)
+IFBFat(dbpath, rumpfat, units, bcs, append = TRUE, summary = TRUE,
+  sumcols)
 }
 \arguments{
 \item{dbpath}{path to location of capture database or where fat measurements are stored}
@@ -14,6 +15,12 @@ IFBFat(dbpath, rumpfat, units, bcs)
 \item{units}{character. whether rump fat measurement is in "cm" or "mm"}
 
 \item{bcs}{name of column where body condition score exists}
+
+\item{append}{Logical. TRUE/FALSE. TRUE if IFBFat should be appended to original dataframe. Default is TRUE.}
+
+\item{summary}{Logical. TRUE/FALSE. TRUE if a summary should be returned. Summary included mean, SE, and upper and lower 95% CIs calculated by categories of choice.}
+
+\item{sumcols}{vector of column names in database that should be aggregated on. Max categories == 3. Example: calculate summary of IFBFat by Sex and PMU}
 }
 \value{
 Returns original capture database with IFBFat column appended
@@ -24,6 +31,7 @@ calculate IFBFat for bighorn sheep
 \examples{
 \donttest{fat<-IFBFat(dbpath = 'C:/Desktop/yourdb', rumpfat = 'MaxFat', units = "mm", bcs = 'BCS')}
 }
-\keyword{IFBFat}
+\keyword{IFBFat,}
 \keyword{condition,}
 \keyword{nutritional}
+\keyword{summary}
