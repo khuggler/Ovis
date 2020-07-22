@@ -22,8 +22,10 @@ monthlist<-c('Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'S
   for(i in 1:length(files)){
 
     name<-unlist(strsplit(files[i], "_")[[1]])
-    yr<-name[3]
-    name<-name[2]
+    x<-length(name)
+
+    yr<-name[x]
+    name<-name[x-1]
 
     yr<-unlist(strsplit(yr, ".nc")[[1]])[1]
 
