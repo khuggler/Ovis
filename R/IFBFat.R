@@ -15,12 +15,11 @@
 
 
 
-IFBFat<-function(dbpath, rumpfat, units, bcs, append = TRUE, summary = TRUE, sumcols){
+IFBFat<-function(db, rumpfat, units, bcs, append = TRUE, summary = TRUE, sumcols){
 
   if(units == "mm"){
     db[, rumpfat]<-db[,rumpfat]/10
   }
-
   db$IFBFat<-NA
 
 
