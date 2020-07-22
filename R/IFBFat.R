@@ -5,7 +5,7 @@
 #' @param units character. whether rump fat measurement is in "cm" or "mm"
 #' @param bcs name of column where body condition score exists
 #' @param append Logical. TRUE/FALSE. TRUE if IFBFat should be appended to original dataframe. Default is TRUE.
-#' @param summary Logical. TRUE/FALSE. TRUE if a summary should be returned. Summary included mean, SE, and upper and lower 95% CIs calculated by categories of choice.
+#' @param summary Logical. TRUE/FALSE. TRUE if a summary should be returned. Summary included mean, SE, and upper and lower 95 percent CIs calculated by categories of choice.
 #' @param sumcols vector of column names in database that should be aggregated on. Max categories == 3. Example: calculate summary of IFBFat by Sex and PMU
 #' @return Returns original capture database with IFBFat column appended
 #' @keywords nutritional condition, IFBFat, summary
