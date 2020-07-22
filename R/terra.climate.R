@@ -43,5 +43,5 @@ monthlist<-c('Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'S
 
 
 }
-
+ return(new.stack)
 }
