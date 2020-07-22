@@ -4,7 +4,7 @@
 \alias{IFBFat}
 \title{IFBFat}
 \usage{
-IFBFat(db, rumpfat, units, bcs, append = TRUE, summary = TRUE, sumcols)
+IFBFat(db, rumpfat, units, bcs, append, summary, sumcols)
 }
 \arguments{
 \item{db}{dataframe of capture database}
