@@ -35,7 +35,7 @@ monthlist<-c('Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'S
 
     monthnames<-monthlist[months]
 
-    names(temp)<-paste0(name, "_", monthnames,yr)
+    names(temp)<-paste0(name, "_", monthnames, "_", yr)
 
     study<-sp::spTransform(study, sp::proj4string(temp))
 
