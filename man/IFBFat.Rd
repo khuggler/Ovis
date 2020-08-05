@@ -4,12 +4,12 @@
 \alias{IFBFat}
 \title{IFBFat}
 \usage{
-IFBFat(db, rumpfat, units, bcs, append, summary, sumcols)
+IFBFat(db, maxfat, units, bcs, append, summary, sumcols)
 }
 \arguments{
 \item{db}{dataframe of capture database}
 
-\item{rumpfat}{name of column where rump fat measurement exists}
+\item{maxfat}{name of column where max fat measurement exists}
 
 \item{units}{character. whether rump fat measurement is in "cm" or "mm"}
 

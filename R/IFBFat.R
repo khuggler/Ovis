@@ -1,7 +1,7 @@
 #' @title IFBFat
 #' @description calculate IFBFat for bighorn sheep
 #' @param db dataframe of capture database
-#' @param rumpfat name of column where rump fat measurement exists
+#' @param maxfat name of column where max fat measurement exists
 #' @param units character. whether rump fat measurement is in "cm" or "mm"
 #' @param bcs name of column where body condition score exists
 #' @param append Logical. TRUE/FALSE. TRUE if IFBFat should be appended to original dataframe. Default is TRUE.
@@ -15,10 +15,10 @@
 
 
 
-IFBFat<-function(db, rumpfat, units, bcs, append, summary, sumcols){
+IFBFat<-function(db, maxfat, units, bcs, append, summary, sumcols){
 
   if(units == "mm"){
-    db[, rumpfat]<-db[,rumpfat]/10
+    db[, maxfat]<-db[,maxfat]/10
   }
   db$IFBFat<-NA
 
@@ -26,11 +26,11 @@ IFBFat<-function(db, rumpfat, units, bcs, append, summary, sumcols){
   new.db<-data.frame()
     for(i in 1:nrow(db)){
 
-  if(db[i, rumpfat] > 0){
-    db$IFBFat<-13.28*db[,rumpfat] + 7.78
+  if(db[i, maxfat] > 0){
+    db$IFBFat<-13.28*db[,maxfat] + 7.78
   }
 
-    if(db[i, rumpfat] == 0){
+    if(db[i, maxfat] == 0){
       db$IFBFat<-3.92*db[,bcs] -1.48
     }
 
@@ -81,11 +81,15 @@ IFBFat<-function(db, rumpfat, units, bcs, append, summary, sumcols){
     }
   }
 
-  if(append == TRUE){
+  if(append == TRUE & summary == TRUE){
   return(list(db, agg))
   }
 
-  if(append == FALSE){
+  if(append == TRUE & summary == FALSE){
+    return(db)
+  }
+
+  if(append == FALSE & summary == TRUE){
     return(agg)
   }
 }
