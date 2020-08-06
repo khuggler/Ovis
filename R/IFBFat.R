@@ -48,8 +48,9 @@ IFBFat<-function(db, maxfat, units, bcs, append, summary, sumcols){
     if(length(sumcols)==1){
       meanagg<-aggregate(db$IFBFat, by = list(db[,sumcols[1]]), data = db,FUN = mean, na.rm = T)
       se<-aggregate(db$IFBFat, by = list(db[,sumcols[1]]), FUN = st.err)[,2]
+      sd<-aggregate(db$IFBFat, by = list(db[,sumcols[1]]), FUN = sd, na.rm = T)[,2]
 
-      agg<-cbind(meanagg, se)
+      agg<-cbind(meanagg, se, sd)
 
       agg$lower.ci<-agg$x - 1.96*agg$se
       agg$upper.ci<-agg$x + 1.96*agg$se
@@ -60,7 +61,8 @@ IFBFat<-function(db, maxfat, units, bcs, append, summary, sumcols){
     if(length(sumcols)==2){
    x<-aggregate(db$IFBFat, by = list(db[,sumcols[1]], db[,sumcols[2]]), data = db,FUN = mean, na.rm = T)
    se<-aggregate(db$IFBFat, by = list(db[,sumcols[1]], db[,sumcols[2]]), FUN = st.err)[,3]
-   agg<-cbind(meanagg, se)
+   sd<-aggregate(db$IFBFat, by = list(db[,sumcols[1]], db[,sumcols[[2]]]), FUN = sd, na.rm = T)[,3]
+   agg<-cbind(meanagg, se, sd)
 
    agg$lower.ci<-agg$x - 1.96*agg$se
    agg$upper.ci<-agg$x + 1.96*agg$
@@ -71,8 +73,9 @@ IFBFat<-function(db, maxfat, units, bcs, append, summary, sumcols){
     if(length(sumcols)==3){
       meanagg<-aggregate(db$IFBFat, by = list(db[,sumcols[1]], db[,sumcols[2]], db[,sumcols[3]]), data = db,FUN = mean, na.rm = T)
       se<-aggregate(db$IFBFat, by = list(db[,sumcols[1]], db[,sumcols[2]], db[,sumcols[3]]), FUN = st.err)[,4]
+      sd<-aggregate(db$IFBFat, by = list(db[,sumcols[1]], db[,sumcols[[2]]], db[,sumcols[[3]]]), FUN = sd, na.rm = T)[,4]
 
-      agg<-cbind(meanagg, se)
+      agg<-cbind(meanagg, se,sd)
 
       agg$lower.ci<-agg$x - 1.96*agg$se
       agg$upper.ci<-agg$x + 1.96*agg$se
