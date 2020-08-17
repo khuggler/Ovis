@@ -14,8 +14,9 @@ dnld.snodas<-function(root.dir, cropshape, startdate, enddate){
 
 setwd(root.dir)
 
+require(tidyr)
 
-if(!dir.exists("SNODAS")){
+  if(!dir.exists("SNODAS")){
   dir.create("SNODAS")
 }
 
@@ -36,7 +37,7 @@ if(!dir.exists("./SNODAS/SNODAS_SWE")){
 
 
 study<-rgdal::readOGR(cropshape)
-study<-sp::spTransform(study, CRS("+init=epsg:4326"))
+study<-sp::spTransform(study, sp::CRS("+init=epsg:4326"))
 
 # Create a list of dates that we want
 dts<- seq(as.Date(startdate), as.Date(enddate), by = "day")
@@ -53,16 +54,16 @@ outpath<- paste(getwd(), "SNODAS/RawSNODAS", sep = "/")
 # Loop through the dates and download the SNODAS data
 for(i in 1:length(dts)){
   # Get the year
-  yr<- year(dts[i])
+  yr<- lubridate::year(dts[i])
 
   # Get the month as character
-  mc<- as.character(month(dts[i], label = TRUE, abbr = TRUE))
+  mc<- as.character(lubridate::month(dts[i], label = TRUE, abbr = TRUE))
 
   # Get month as number with a leading 0 if necessary
-  mn<- str_pad(month(dts[i]), width = 2, side = "left", pad = "0")
+  mn<- stringr::str_pad(lubridate::month(dts[i]), width = 2, side = "left", pad = "0")
 
   # Get the day with a leading 0
-  d<- str_pad(day(dts[i]), width = 2, side = "left", pad = "0")
+  d<- stringr::str_pad(lubridate::day(dts[i]), width = 2, side = "left", pad = "0")
 
   # Now get the .tar file from server, sometimes they are missing, so use a try
   tst<- try(download.file(paste(paste(paste(url, yr, sep = ""), paste(mn, mc, sep = "_"), sep = "/"), paste("/SNODAS_", yr, mn, d, sep = ""), ".tar", sep = ""), paste(outpath, paste("/SNODAS_", yr, mn, d, ".tar", sep = ""), sep = ""), quiet = TRUE, mode = "wb"), silent = TRUE)
@@ -75,7 +76,7 @@ for(i in 1:length(dts)){
     # Get a list of dat files. Should only be two given our query
     sfiles<- data.frame(Files = dir("./SNODAS/gzSNODAS", pattern = ".gz$", full.names = TRUE), stringsAsFactors = FALSE) %>%
       separate(Files, into = c(NA, NA, "Base", NA), sep = "\\.", remove = FALSE) %>%
-      filter(Base == "dat") # %>%
+      dplyr::filter(Base == "dat") # %>%
     # filter(str_detect(Files, pattern = c("1034", "1036")))
     # For some reason, str_detect is failing to always find the pattern when it exists...to create a work-around for this, loop through the two patterns, use grep and fix it this way. Lame but I can't explain it
     fnd<- integer()
@@ -88,7 +89,7 @@ for(i in 1:length(dts)){
 
     # Now unzip the files
     for(j in 1:nrow(sfiles)){
-      gunzip(sfiles$Files[j])
+      R.utils::gunzip(sfiles$Files[j])
     }
 
     # Get list of the unzipped files
@@ -101,10 +102,10 @@ for(i in 1:length(dts)){
       r <- readBin(paste("./SNODAS/gzSNODAS", gfile[j], sep = "/"), integer(), n = 6935 * 3351, size = 2, signed = TRUE, endian = "big") / 1000
 
       # Coerce the vector to a matrix, then to a raster, this will be a 1km cell in DecDeg
-      r <- raster(matrix(r, nrow = 3351, ncol = 6935, byrow = TRUE), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", xmn = -124.7337, xmx = -66.9421, ymn = 24.9504, ymx = 52.8754)
+      r <- raster::raster(matrix(r, nrow = 3351, ncol = 6935, byrow = TRUE), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", xmn = -124.7337, xmx = -66.9421, ymn = 24.9504, ymx = 52.8754)
 
       # now crop to our study area
-      r<- crop(r, study)
+      r<- raster::crop(r, study)
 
       # Reproject raster to the same CRS as the original points. Change CRS to the original pts
       #r<- projectRaster(r, res = c(1000, 1000), crs = proj4string(study))
@@ -115,10 +116,10 @@ for(i in 1:length(dts)){
 
       # Save to the correct directory. Index 1 should be SWE because of alphabetical file listing
       if(j == 1){
-        writeRaster(r, paste("./SNODAS/SNODAS_SWE", paste("/SNODAS_", yr, mn, d, "_SWE.tif", sep = ""), sep = ""), format = "GTiff", overwrite = TRUE)
+        raster::writeRaster(r, paste("./SNODAS/SNODAS_SWE", paste("/SNODAS_", yr, mn, d, "_SWE.tif", sep = ""), sep = ""), format = "GTiff", overwrite = TRUE)
       } else
       {
-        writeRaster(r, paste("./SNODAS/SNODAS_Depth", paste("/SNODAS_", yr, mn, d, "_Depth.tif", sep = ""), sep = ""), format = "GTiff", overwrite = TRUE)
+        raster::writeRaster(r, paste("./SNODAS/SNODAS_Depth", paste("/SNODAS_", yr, mn, d, "_Depth.tif", sep = ""), sep = ""), format = "GTiff", overwrite = TRUE)
       }
     }
     # Remove our mess from the file directories
