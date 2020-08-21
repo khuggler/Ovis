@@ -34,9 +34,16 @@ if(!dir.exists("./SNODAS/SNODAS_SWE")){
   dir.create("./SNODAS/SNODAS_SWE")
 }
 
-
+if(is.character(cropshape)){
 study<-rgdal::readOGR(cropshape)
 study<-sp::spTransform(study, sp::CRS("+init=epsg:4326"))
+}
+
+
+if(!is.character(cropshape)){
+  study<-cropshape
+  study<-sp::spTransform(study, sp::CRS("+init=epsg:4326"))
+}
 
 
 dts<- seq(as.Date(startdate), as.Date(enddate), by = "day")
