@@ -24,7 +24,7 @@ extract.terra.climate<-function(root.dir, cropshape, months, comp.data, sub.dir,
                                                                                                  ifelse(BHS_Full$MN == 9,"Sept", NA)))))
   BHS_Full$MNYEAR <-paste(BHS_Full$MONTH, BHS_Full$YEAR, sep = "_")
 
-  #' make locations spatial
+
   sp::coordinates(BHS_Full) <- c("MID_LONG", "MID_LAT")
   sp::proj4string(BHS_Full) <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
   BHS_Full<-sp::spTransform(BHS_Full, sp::proj4string(tc[[1]]))
