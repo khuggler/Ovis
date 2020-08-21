@@ -6,7 +6,7 @@
 #' @param aidcol name of column where animal ID exists in capture data.frame
 #' @param merge Logical. If TRUE (default), function will merge desired component of lab results to capture data
 #' @param mergecol name of sheet for desired merge
-#' @return Returns a list (if merge = TRUE) with list of sheets with lab results and merged data.frame of selected lab results to capture data. If merge = FALSE, a list of sheets for all lab results will be returned
+#' @return Returns a list (if merge = TRUE) with list of sheets with lab results and merged data.frame of selected lab results to capture data. If merge = FALSE, a list of sheets for all lab results #' will be returned
 #' @keywords disease, lab results, test, movi, pcr, elisa
 #' @export
 

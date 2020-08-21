@@ -20,7 +20,7 @@
 \item{mergecol}{name of sheet for desired merge}
 }
 \value{
-Returns a list (if merge = TRUE) with list of sheets with lab results and merged data.frame of selected lab results to capture data. If merge = FALSE, a list of sheets for all lab results will be returned
+Returns a list (if merge = TRUE) with list of sheets with lab results and merged data.frame of selected lab results to capture data. If merge = FALSE, a list of sheets for all lab results #' will be returned
 }
 \description{
 merge lab results with capture data. This will likely only be used for Idaho and Asotin data (Wyoming is already merged)
