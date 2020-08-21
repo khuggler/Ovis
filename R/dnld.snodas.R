@@ -7,7 +7,6 @@
 #' @return Returns rasters for each day of SWE and Snow Depth saved in sub directories of root.dir
 #' @keywords SNODAS, snowpack, SWE, download
 #' @export
-#'
 
 
 dnld.snodas<-function(root.dir, cropshape, startdate, enddate){
