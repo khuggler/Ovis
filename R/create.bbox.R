@@ -26,7 +26,7 @@ p.poly.trans<-sp::spTransform(p.poly, '+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=
 
 if(buffer == TRUE){
   p.poly<-sp::spTransform(p.poly, '+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs')
-  new.poly<-rgeos::gBuffer(p.poly, width = buffersize*1000, capStyle = 'SQUARE', joinStyle = 'MITRE', mitreLimit = 10)
+  new.poly<-rgeos::gBuffer(p.poly, width = buffsize*1000, capStyle = 'SQUARE', joinStyle = 'MITRE', mitreLimit = 10)
 
   new.poly.trans<-sp::spTransform(new.poly, sp::proj4string(inshape))
 }
