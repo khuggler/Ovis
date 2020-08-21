@@ -20,7 +20,7 @@ extract.terra.climate(root.dir, cropshape, months, comp.data, sub.dir,
 
 \item{years}{vectory of years YYYY for extraction}
 
-\item{outdir}{path to directory of where extracted data should be saved}
+\item{out.dir}{path to directory of where extracted data should be saved}
 }
 \value{
 Returns a csv of extracted data for all TerraClimater layers

@@ -6,7 +6,7 @@
 #' @param comp.data path to composition database
 #' @param sub.dir directory name of where intermediate .RDS files should be saved. Should be directory that is different from root.dir
 #' @param years vectory of years YYYY for extraction
-#' @param outdir path to directory of where extracted data should be saved
+#' @param out.dir path to directory of where extracted data should be saved
 #' @return Returns a csv of extracted data for all TerraClimater layers
 #' @keywords terraclimate, climate, extract, composition, biomass
 #' @export
@@ -18,7 +18,7 @@ extract.terra.climate<-function(root.dir, cropshape, months, comp.data, sub.dir,
 
   BHS_Full <- read.csv(comp.data, stringsAsFactors = FALSE)
 
-  #Create an ID column that is the same as what's created in the raster
+
   BHS_Full$MONTH <- ifelse(BHS_Full$MN == 5,"May", ifelse(BHS_Full$MN == 6,"June",
                                                           ifelse(BHS_Full$MN == 7,"July", ifelse(BHS_Full$MN == 8,"August",
                                                                                                  ifelse(BHS_Full$MN == 9,"Sept", NA)))))
@@ -63,10 +63,7 @@ extract.terra.climate<-function(root.dir, cropshape, months, comp.data, sub.dir,
   }
 
 
-  #Now, read back in RDS files, and assign to new data.frame with correct data
-  #
 
-  #make vector of years that you are interested in
 
   final.list<-list()
   for(i in 1:length(years)){
@@ -105,8 +102,8 @@ extract.terra.climate<-function(root.dir, cropshape, months, comp.data, sub.dir,
 
   all<-data.table::rbindlist(final.list, fill = T)
 
-  #Save final.list to a csv
   write.csv(all, outdir, row.names = FALSE)
 
+  return(all)
 
 }
