@@ -16,32 +16,33 @@
 
 
 sheep.report<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mortcol, extracols, keep.aid, out.dir){
-  
-  # get sheep data 
-  
+
+  # get sheep data
+
   sheep.dat<-Ovis::sheep.gps(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mortcol, extracols = 'AID')
   sheep.dat<-sheep.dat[sheep.dat$AID %in% keep.aid, ]
-  
-  
+
+
   uni<-unique(sheep.dat$AID)
   most.recent<-data.frame()
+
   for(i in 1:length(uni)){
     sub<-sheep.dat[sheep.dat$AID == uni[i],]
     sub<-sub[nrow(sub),]
-    
+
     most.recent<-rbind(sub, most.recent)
   }
-  
+
   sp::coordinates(most.recent)<-c('Long', 'Lat')
   sp::proj4string(most.recent)<-'+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
-    
-    
-    # create mapview
+
+
+  # create mapview
   x<-mapview::mapview(most.recent, zcol = "AID", map.types = 'Esri.WorldImagery')
   mapview::mapshot(x, url = paste0(out.dir, "map.html"))
-  
-  #save kml 
+
+  #save kml
   most.recent$name<-most.recent$AID
-  rgdal::writeOGR(most.recent['name'], paste0(out.dir, "/LatestLocs.kml"),  driver = 'KML', layer = 'sheep.locs', overwrite = T)
-  
-  }
+  rgdal::writeOGR(most.recent['name'], paste0(out.dir, "LatestLocs.kml"),  driver = 'KML', layer = 'sheep.locs', overwrite = T)
+
+}
