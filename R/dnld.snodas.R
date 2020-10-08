@@ -39,8 +39,6 @@ study<-rgdal::readOGR(cropshape)
 study<-sp::spTransform(study, sp::CRS("+init=epsg:4326"))
 }
 
-
-
 if(!is.character(cropshape)){
   study<-cropshape
   study<-sp::spTransform(study, sp::CRS("+init=epsg:4326"))
