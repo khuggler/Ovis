@@ -7,7 +7,7 @@
 #' @param capcol name of column where capture/start date exists
 #' @param dateformat character string of the format that date columns are in
 #' @param mortcol name of column where mortality date or end date exists
-#' @param extracols vector of extracolumns that should be appended to GPS data. Names in vector MUCH match named in lookup table
+#' @param extracols vector of extra columns that should be appended to GPS data. Names in vector MUST match names in lookup table
 #' @return Returns a data.frame with all gps data and any extra columns desired
 #' @keywords capture, animal ID, gps, append
 #' @export
@@ -42,7 +42,7 @@ sheep.gps<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mort
 
     new.sub<-sub.sheep[sub.sheep$Date > sub.dat$CapDate & sub.sheep$Date < sub.dat$MortDate, ]
 
-    if(length(extracols) > 0){
+    if(!is.na(extracols)){
       for(l in 1:length(extracols)){
        new.sub[,extracols[l]]<-sub.dat[,extracols[l]][1]
 
