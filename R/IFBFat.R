@@ -59,7 +59,7 @@ IFBFat<-function(db, maxfat, units, bcs, append, summary, sumcols){
     }
 
     if(length(sumcols)==2){
-   x<-aggregate(db$IFBFat, by = list(db[,sumcols[1]], db[,sumcols[2]]), data = db,FUN = mean, na.rm = T)
+   meanagg<-aggregate(db$IFBFat, by = list(db[,sumcols[1]], db[,sumcols[2]]), data = db,FUN = mean, na.rm = T)
    se<-aggregate(db$IFBFat, by = list(db[,sumcols[1]], db[,sumcols[2]]), FUN = st.err)[,3]
    sd<-aggregate(db$IFBFat, by = list(db[,sumcols[1]], db[,sumcols[[2]]]), FUN = sd, na.rm = T)[,3]
    agg<-cbind(meanagg, se, sd)
