@@ -65,7 +65,7 @@ IFBFat<-function(db, maxfat, units, bcs, append, summary, sumcols){
    agg<-cbind(meanagg, se, sd)
 
    agg$lower.ci<-agg$x - 1.96*agg$se
-   agg$upper.ci<-agg$x + 1.96*agg$
+   agg$upper.ci<-agg$x + 1.96*agg$se
 
      names(agg)[1:2]<-sumcols[1:2]
     }
