@@ -35,6 +35,9 @@ sheep.gps<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mort
   sheep.dat<-data.frame(sheep.dat)
   sheep.dat$Date<-strftime(sheep.dat$TelemDate, format = "%Y-%m-%d")
 
+
+
+
   col.hist<-Ovis::collar.history(data = newdb, idcol = "AID", study = "washington", capdate = "CapDate", mortdate = "MortDate")
 
   uni<-unique(col.hist$AnimalID)
@@ -112,9 +115,12 @@ if(!is.na(extracols)){
   }
 
   return(final)
-}else{
-  return(final.sheep)
+
 }
+
+  if(is.na(extracols)){
+    return(final.sheep)
+  }
 
 }
 
