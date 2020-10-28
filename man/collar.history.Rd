@@ -4,12 +4,14 @@
 \alias{collar.history}
 \title{collar.history}
 \usage{
-collar.history(data, idcol, capdate, mortdate)
+collar.history(data, idcol, study, capdate, mortdate)
 }
 \arguments{
 \item{data}{name of data.frame for capture data}
 
 \item{idcol}{name of column where animal id is stored}
+
+\item{study}{name of study area to choose for collar history table ("idaho", or "washington")}
 
 \item{capdate}{name of column where capture date is stored}
 
