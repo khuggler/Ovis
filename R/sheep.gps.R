@@ -70,7 +70,7 @@ sheep.gps<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mort
           sub.gps<-sheep.dat[sheep.dat$CollarSerialNumber == subsub2$Serial2, ]
 
 
-            sub.gps2<-sub.gps[sub.gps$Date > subsub2$Serial2Start & sub.gps$Date <= subsub2$Serial2End, ]
+            sub.gps2<-sub.gps[sub.gps$Date > subsub2$Serial2Start & sub.gps$Date < subsub2$Serial2End, ]
 
 
         }
@@ -86,7 +86,7 @@ sheep.gps<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mort
         sub.gps<-sheep.dat[sheep.dat$CollarSerialNumber == subsub1$Serial1, ]
 
 
-          sub.gps1<-sub.gps[sub.gps$Date > subsub1$Serial1Start & sub.gps$Date <= subsub1$Serial1End, ]
+          sub.gps1<-sub.gps[sub.gps$Date > subsub1$Serial1Start & sub.gps$Date < subsub1$Serial1End, ]
 
 
         sheepsheep<-sub.gps1
