@@ -42,67 +42,60 @@ sheep.gps<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mort
 
   uni<-unique(col.hist$AnimalID)
 
-  final.sheep<-data.frame()
+  #final.sheep<-data.frame()
 
-  for(i in 1:length(uni)){
-    sub<-col.hist[col.hist$AnimalID == uni[i],]
-    sercols<-sub[, c(2,3)]
-    sercols<-c(sercols[1,1], sercols[1,2])
-    len<-as.numeric(sum(is.na(sercols)))
+  for(k in 1:nrow(col.hist)){
+    xx<-col.hist[k, ]
+    print(k)
 
+    for(l in 1:2){
+      if(l == 1){
+        xxx<-xx[, c('AnimalID', 'Serial1', 'Serial1Start', 'Serial1End')]
+      }
 
-    if(len == 0){
+      if(l == 2){
+        xxx<-xx[, c('AnimalID', 'Serial2', 'Serial2Start', 'Serial2End')]
+      }
 
-      for(l in 1:length(sercols)){
+      if(is.na(xxx[1,2])){next}
+      ss<-sheep.dat[sheep.dat$CollarSerialNumber==xxx[1,2],]
+      ss<-ss[(ss$Date> xxx[,3])&ss$Date < (xxx[,4]),]
+      ss<-ss[complete.cases(ss$Lat),]
 
-        if(l == 1){
-      subsub1<-sub[, c('AnimalID', 'Serial1', 'Serial1Start', 'Serial1End')]
-      sub.gps<-sheep.dat[sheep.dat$CollarSerialNumber == subsub1$Serial1, ]
+      if(nrow(ss)==0){next}
+      if(nrow(ss)>0){
+        ss$AID<-xxx[1,1]
+      }
 
-
-        sub.gps1<-sub.gps[sub.gps$Date > subsub1$Serial1Start & sub.gps$Date < subsub1$Serial1End, ]
-
-
-               }
-
-        if(l == 2){
-          subsub2<-sub[, c('AnimalID', 'Serial2', 'Serial2Start', 'Serial2End')]
-          sub.gps<-sheep.dat[sheep.dat$CollarSerialNumber == subsub2$Serial2, ]
-
-
-            sub.gps2<-sub.gps[sub.gps$Date > subsub2$Serial2Start & sub.gps$Date < subsub2$Serial2End, ]
-
-
-        }
-
-        sheepsheep<-rbind(sub.gps1, sub.gps2)
-        sheepsheep$AID<-sub$AnimalID
+      if(l == 1){
+        ald<-ss
+      }
+      if(l>1){
+        ald<-rbind(ald,ss)
       }
 
     }
-
-      if(len == 1){
-        subsub1<-sub[, c('AnimalID', 'Serial1', 'Serial1Start', 'Serial1End')]
-        sub.gps<-sheep.dat[sheep.dat$CollarSerialNumber == subsub1$Serial1, ]
-
-
-          sub.gps1<-sub.gps[sub.gps$Date > subsub1$Serial1Start & sub.gps$Date < subsub1$Serial1End, ]
-
-
-        sheepsheep<-sub.gps1
-        sheepsheep$AID<-sub$AnimalID
-      }
-
-
-      final.sheep<-rbind(sheepsheep, final.sheep)
+    if(k == 1){
+      outsp<-ald
     }
+    if(k>1){
+      outsp<-rbind(outsp,ald)
+    }
+  }
+
+  outsp<-data.frame(outsp)
+  outsp2<-outsp[!duplicated(outsp[,1:4]),]
+  outsp2<-outsp2[complete.cases(outsp2$CollarSerialNumber),]
+
+}
+
 
 
 if(!is.na(extracols)){
-  uni<-unique(final.sheep$AID)
+  uni<-unique(outsp2$AID)
   final<-data.frame()
   for(i in 1:length(uni)){
-    sub.sheep<-final.sheep[final.sheep$AID == uni[i],]
+    sub.sheep<-outsp2[outsp2$AID == uni[i],]
     sub.db<-sheep.db[sheep.db$AID == uni[i],]
     sub.db<-sub.db[nrow(sub.db),]
 
@@ -118,10 +111,11 @@ if(!is.na(extracols)){
 
 }
 
-  if(is.na(extracols)){
-    return(final.sheep)
+if(is.na(extracols)){
+  return(outsp2)
+}
+
   }
 
-}
 
 
