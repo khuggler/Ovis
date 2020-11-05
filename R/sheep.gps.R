@@ -87,9 +87,6 @@ sheep.gps<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mort
   outsp2<-outsp[!duplicated(outsp[,1:4]),]
   outsp2<-outsp2[complete.cases(outsp2$CollarSerialNumber),]
 
-}
-
-
 
 if(!is.na(extracols)){
   uni<-unique(outsp2$AID)
