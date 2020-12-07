@@ -4,8 +4,18 @@
 \alias{sheep.report}
 \title{sheep.report}
 \usage{
-sheep.report(vecpath, sheepdb, tzone, serialcol, capcol, dateformat,
-  mortcol, extracols, keep.aid, out.dir)
+sheep.report(
+  vecpath,
+  sheepdb,
+  tzone,
+  serialcol,
+  capcol,
+  dateformat,
+  mortcol,
+  extracols,
+  keep.aid,
+  out.dir
+)
 }
 \arguments{
 \item{vecpath}{path where vec data is located}

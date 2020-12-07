@@ -4,8 +4,7 @@
 \alias{sheep.gps}
 \title{sheep.gps}
 \usage{
-sheep.gps(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mortcol,
-  extracols)
+sheep.gps(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, extracols)
 }
 \arguments{
 \item{vecpath}{path where vec data is located}
@@ -13,8 +12,6 @@ sheep.gps(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mortcol,
 \item{sheepdb}{path to sheep capture database}
 
 \item{tzone}{desired time zone of gps data: "MST" or "US/Pacific"}
-
-\item{serialcol}{name of column in capture datebase/lookup table where Serial Number exists}
 
 \item{capcol}{name of column where capture/start date exists}
 
