@@ -4,7 +4,17 @@
 \alias{sheep.gps}
 \title{sheep.gps}
 \usage{
-sheep.gps(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, extracols)
+sheep.gps(
+  vecpath,
+  sheepdb,
+  tzone,
+  capcol,
+  dateformat,
+  mortcol,
+  dnld.data,
+  dnld.fold,
+  extracols
+)
 }
 \arguments{
 \item{vecpath}{path where vec data is located}
@@ -18,6 +28,10 @@ sheep.gps(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, extracols)
 \item{dateformat}{character string of the format that date columns are in}
 
 \item{mortcol}{name of column where mortality date or end date exists}
+
+\item{dnld.data}{Logical. TRUE/FALSE whether to include downloaded data from collars}
+
+\item{dnld.fold}{path to root folder where downloaded data exists}
 
 \item{extracols}{vector of extra columns that should be appended to GPS data. Names in vector MUST match names in lookup table}
 }

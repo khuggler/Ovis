@@ -6,6 +6,8 @@
 #' @param capcol name of column where capture/start date exists
 #' @param dateformat character string of the format that date columns are in
 #' @param mortcol name of column where mortality date or end date exists
+#' @param dnld.data Logical. TRUE/FALSE whether to include downloaded data from collars
+#' @param dnld.fold path to root folder where downloaded data exists
 #' @param extracols vector of extra columns that should be appended to GPS data. Names in vector MUST match names in lookup table
 #' @return Returns a data.frame with all gps data and any extra columns desired
 #' @keywords capture, animal ID, gps, append
@@ -13,7 +15,7 @@
 #' @examples
 #'
 
-sheep.gps<-function(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, extracols){
+sheep.gps<-function(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data, dnld.fold, extracols){
   sheep.dat<-Ovis::getVec(vecpath, tzone)
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
   newdb<-sheep.db
@@ -35,6 +37,59 @@ sheep.gps<-function(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, extrac
   sheep.dat$Date<-strftime(sheep.dat$TelemDate, format = "%Y-%m-%d")
 
 
+  sheep.dat<-sheep.dat[, c(1:8)]
+
+  if(dnld.data == TRUE){
+    files<-list.files(dnld.fold, full.names = T)
+
+    all.dnld<-data.frame()
+
+    for(i in 1:length(files)){
+      sub<-read.csv(files[[i]], stringsAsFactors = F)
+      #aid<-sapply(strsplit(as.character(files[[i]]), "\\.csv"), "[", 1)
+      #aid<-sapply(strsplit(as.character(aid), "_GPS"), "[", 1)
+      #aid<-sapply(strsplit(as.character(aid), "/"), "[", 7)
+      #sub$AID<-aid
+
+      sub$TelemDate<-paste(sub$UTC_Date, sub$UTC_Time, sep = " ")
+
+      names<-c('CollarID', 'TelemDate', 'DOP', "X3D_Error..m.", 'Temp...C.', 'Latitude....', 'Longitude....', 'UTC_Date')
+      sub<-sub[,names]
+
+      names(sub)<-names(sheep.dat)
+
+      sub$TelemDate<-as.POSIXct(sub$TelemDate, format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+      sub$TelemDate<-format(sub$TelemDate, tz = "US/Pacific", usetz = FALSE)
+      sub$TelemDate<-as.POSIXct(sub$TelemDate, format = "%Y-%m-%d %H:%M:%S")
+
+      sub<-sub[with(sub, order(-CollarSerialNumber, TelemDate)),]
+
+
+
+      all.dnld<-rbind(sub, all.dnld)
+
+
+    }
+
+
+
+    sheep.dat$X2D.3D<-rep(all.dnld$X2D.3D, length.out = nrow(sheep.dat))
+
+    all.dnld$Date<-as.Date(all.dnld$Date, format = "%m/%d/%Y")
+    sheep.dat$Date<-as.Date(sheep.dat$Date, format = "%Y-%m-%d")
+
+    sheep.dat<-rbind(sheep.dat, all.dnld)
+    sheep.dat<-sheep.dat[with(sheep.dat, order(-CollarSerialNumber, TelemDate)),]
+
+
+    sheep.dat$hr<-strftime(sheep.dat$TelemDate, format = "%H")
+    sheep.dat$id<-paste(sheep.dat$Date, sheep.dat$hr, sep = "_")
+
+
+    sheep.dat<-sheep.dat[!duplicated(sheep.dat[, c('CollarSerialNumber', 'id')]),]
+
+
+  }
 
 
   col.hist<-Ovis::collar.history(data = newdb, idcol = "AID", study = "washington", capdate = "CapDate", mortdate = "MortDate")
@@ -85,6 +140,8 @@ sheep.gps<-function(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, extrac
   outsp<-data.frame(outsp)
   outsp2<-outsp[!duplicated(outsp[,1:4]),]
   outsp2<-outsp2[complete.cases(outsp2$CollarSerialNumber),]
+
+
 
 
 if(!is.na(extracols)){
