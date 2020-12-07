@@ -3,7 +3,6 @@
 #' @param vecpath path where vec data is located
 #' @param sheepdb path to sheep capture database
 #' @param tzone desired time zone of gps data: "MST" or "US/Pacific"
-#' @param serialcol name of column in capture datebase/lookup table where Serial Number exists
 #' @param capcol name of column where capture/start date exists
 #' @param dateformat character string of the format that date columns are in
 #' @param mortcol name of column where mortality date or end date exists
@@ -14,7 +13,7 @@
 #' @examples
 #'
 
-sheep.gps<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mortcol, extracols){
+sheep.gps<-function(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, extracols){
   sheep.dat<-Ovis::getVec(vecpath, tzone)
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
   newdb<-sheep.db
