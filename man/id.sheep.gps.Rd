@@ -4,9 +4,11 @@
 \alias{id.sheep.gps}
 \title{id.sheep.gps}
 \usage{
-id.sheep.gps(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, extracols)
+id.sheep.gps(gpspath, sheepdb, tzone, capcol, dateformat, mortcol, extracols)
 }
 \arguments{
+\item{gpspath}{path to gps data}
+
 \item{sheepdb}{path to sheep capture database}
 
 \item{tzone}{desired time zone of gps data: "MST" or "US/Pacific"}
@@ -18,8 +20,6 @@ id.sheep.gps(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, extracols)
 \item{mortcol}{name of column where mortality date or end date exists}
 
 \item{extracols}{vector of extra columns that should be appended to GPS data. Names in vector MUST match names in lookup table}
-
-\item{gpspath}{path to gps data}
 }
 \value{
 Returns a data.frame with all gps data and any extra columns desired
