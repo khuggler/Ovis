@@ -55,21 +55,22 @@ id.sheep.gps<-function(gpspath, sheepdb, tzone, capcol, dateformat, mortcol, ext
     
     for(l in 1:2){
       if(l == 1){
-        xxx<-xx[, c('AnimalID', 'Serial1', 'Serial1Start', 'Serial1End')]
+        xxx<-xx[, c('AnimalID','GMU','PMU', 'Serial1', 'Serial1Start', 'Serial1End')]
       }
       
       if(l == 2){
-        xxx<-xx[, c('AnimalID', 'Serial2', 'Serial2Start', 'Serial2End')]
+        xxx<-xx[, c('AnimalID', 'GMU','PMU', 'Serial2', 'Serial2Start', 'Serial2End')]
       }
       
-      if(is.na(xxx[1,2])){next}
-      ss<-sheep.dat[sheep.dat$Collar_Serial_No==xxx[1,2],]
-      ss<-ss[(ss$Date> xxx[,3])&ss$Date < (xxx[,4]),]
+      if(is.na(xxx[1,4])){next}
+      ss<-sheep.dat[sheep.dat$Collar_Serial_No==xxx[1,4],]
+      ss<-ss[(ss$Date> xxx[,5])&ss$Date < (xxx[,6]),]
       ss<-ss[complete.cases(ss$LAT),]
       
       if(nrow(ss)==0){next}
       if(nrow(ss)>0){
         ss$AID<-xxx[1,1]
+        ss$PMU<-xxx[1,3]
       }
       
       if(l == 1){
