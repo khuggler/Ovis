@@ -22,6 +22,7 @@ sheep.gps<-function(vecpath, sheepdb, tzone, capcol, dateformat, mortcol, dnld.d
 
 
 
+
   # transform dates
   sheep.db$CapDate<-as.Date(sheep.db[, capcol], format = dateformat)
 
