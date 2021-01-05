@@ -4,20 +4,11 @@
 \alias{sheep.gps}
 \title{sheep.gps}
 \usage{
-sheep.gps(
-  vecpath,
-  sheepdb,
-  tzone,
-  capcol,
-  dateformat,
-  mortcol,
-  dnld.data,
-  dnld.fold,
-  extracols
-)
+sheep.gps(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data,
+  dnld.fold, extracols)
 }
 \arguments{
-\item{vecpath}{path where vec data is located}
+\item{keys}{full path to one or more key files}
 
 \item{sheepdb}{path to sheep capture database}
 
@@ -39,7 +30,7 @@ sheep.gps(
 Returns a data.frame with all gps data and any extra columns desired
 }
 \description{
-Merge Raw GPS Data with AnimalID, Sex, and Eartag ID
+Scrape GPS data  from online server, and merge with downloaded data from collars
 }
 \examples{
 
