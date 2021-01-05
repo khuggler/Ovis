@@ -19,7 +19,7 @@
 sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data, dnld.fold, extracols){
   
   if(!'collar' %in% installed.packages()){
-  devtools::install_github("Huh/collar")
+  devtools::install_github("Huh/collar", force = T)
   } 
   
   if('collar' %in% installed.packages()){
