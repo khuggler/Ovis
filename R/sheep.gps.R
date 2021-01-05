@@ -18,7 +18,9 @@
 
 sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data, dnld.fold, extracols){
   
+  if(!'collar' %in% installed.packages()){
   devtools::install_github("Huh/collar")
+  } else{require(collar)}
 
 
   key_path <- get_paths(keys)
@@ -31,7 +33,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   
 
 
-
+>>>>>>> 8065bc28874ad3ed35a7f5e645dc081c73fb4a1f
   # transform dates
   sheep.db$CapDate<-as.Date(sheep.db[, capcol], format = dateformat)
   
