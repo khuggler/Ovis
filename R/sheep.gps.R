@@ -20,7 +20,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   
   devtools::install_github("Huh/collar")
 
-<<<<<<< HEAD
+
   key_path <- get_paths(keys)
   sheep.dat<-collar::fetch_vectronics(key_path, type = "gps")
   sheep.dat<-data.frame(sheep.dat)
@@ -29,10 +29,9 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
   newdb<-sheep.db
   
-  
-=======
 
->>>>>>> 8065bc28874ad3ed35a7f5e645dc081c73fb4a1f
+
+
   # transform dates
   sheep.db$CapDate<-as.Date(sheep.db[, capcol], format = dateformat)
   
