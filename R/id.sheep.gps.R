@@ -16,7 +16,7 @@
 id.sheep.gps<-function(gpspath, sheepdb, tzone, capcol, dateformat, mortcol, extracols){
   sheep.dat<-read.csv(gpspath, stringsAsFactors = F)
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
-  #newdb<-sheep.db
+  newdb<-sheep.db
   
   
   
