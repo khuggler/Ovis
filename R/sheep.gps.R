@@ -29,7 +29,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   
 
 
-  key_path <- get_paths(keys)
+  key_path <- collar::get_paths(keys)
   sheep.dat<-collar::fetch_vectronics(key_path, type = "gps")
   sheep.dat<-data.frame(sheep.dat)
   sheep.dat$acquisitiontime<-as.POSIXct(sheep.dat$acquisitiontime, format = paste0("%Y-%m-%d", "T", "%H:%M:%S"), tz = "UTC")
@@ -39,7 +39,6 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   
 
 
->>>>>>> 8065bc28874ad3ed35a7f5e645dc081c73fb4a1f
   # transform dates
   sheep.db$CapDate<-as.Date(sheep.db[, capcol], format = dateformat)
   
