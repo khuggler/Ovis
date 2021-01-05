@@ -20,7 +20,13 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   
   if(!'collar' %in% installed.packages()){
   devtools::install_github("Huh/collar")
-  } else{require(collar)}
+  } 
+  
+  if('collar' %in% installed.packages()){
+    require(collar)
+  }
+  
+  
 
 
   key_path <- get_paths(keys)
