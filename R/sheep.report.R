@@ -19,7 +19,7 @@ sheep.report<-function(keys, sheepdb, tzone, serialcol, capcol, dateformat, mort
 
   # get sheep data
 
-  sheep.dat<-sheep.gps(keys, sheepdb, tzone, serialcol, capcol, dateformat, mortcol, extracols = NA, dnld.data = FALSE, dnld.fold = NA)
+  sheep.dat<-Ovis::sheep.gps(keys, sheepdb, tzone, serialcol, capcol, dateformat, mortcol, dnld.data = FALSE, dnld.fold = NA)
   sheep.dat<-sheep.dat[sheep.dat$AID %in% keep.aid, ]
 
 
