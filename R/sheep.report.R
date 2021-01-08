@@ -3,7 +3,6 @@
 #' @param keys full path to one or more key files
 #' @param sheepdb path to sheep capture database
 #' @param tzone desired time zone of gps data: "MST" or "US/Pacific"
-#' @param serialcol name of column in capture datebase/lookup table where Serial Number exists
 #' @param capcol name of column where capture/start date exists
 #' @param dateformat character string of the format that date columns are in
 #' @param mortcol name of column where mortality date or end date exists
@@ -15,7 +14,7 @@
 #' @export
 
 
-sheep.report<-function(keys, sheepdb, tzone, serialcol, capcol, dateformat, mortcol, extracols, keep.aid, out.dir){
+sheep.report<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, extracols, keep.aid, out.dir){
 
   # get sheep data
 

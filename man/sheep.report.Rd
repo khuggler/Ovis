@@ -4,8 +4,8 @@
 \alias{sheep.report}
 \title{sheep.report}
 \usage{
-sheep.report(keys, sheepdb, tzone, serialcol, capcol, dateformat, mortcol,
-  extracols, keep.aid, out.dir)
+sheep.report(keys, sheepdb, tzone, capcol, dateformat, mortcol, extracols,
+  keep.aid, out.dir)
 }
 \arguments{
 \item{keys}{full path to one or more key files}
@@ -13,8 +13,6 @@ sheep.report(keys, sheepdb, tzone, serialcol, capcol, dateformat, mortcol,
 \item{sheepdb}{path to sheep capture database}
 
 \item{tzone}{desired time zone of gps data: "MST" or "US/Pacific"}
-
-\item{serialcol}{name of column in capture datebase/lookup table where Serial Number exists}
 
 \item{capcol}{name of column where capture/start date exists}
 
