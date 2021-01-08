@@ -4,21 +4,11 @@
 \alias{sheep.report}
 \title{sheep.report}
 \usage{
-sheep.report(
-  vecpath,
-  sheepdb,
-  tzone,
-  serialcol,
-  capcol,
-  dateformat,
-  mortcol,
-  extracols,
-  keep.aid,
-  out.dir
-)
+sheep.report(keys, sheepdb, tzone, serialcol, capcol, dateformat, mortcol,
+  extracols, keep.aid, out.dir)
 }
 \arguments{
-\item{vecpath}{path where vec data is located}
+\item{keys}{full path to one or more key files}
 
 \item{sheepdb}{path to sheep capture database}
 

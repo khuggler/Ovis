@@ -1,6 +1,6 @@
 #' @title sheep.report
 #' @description generate report with most recent location of desired animal IDs
-#' @param vecpath path where vec data is located
+#' @param keys full path to one or more key files
 #' @param sheepdb path to sheep capture database
 #' @param tzone desired time zone of gps data: "MST" or "US/Pacific"
 #' @param serialcol name of column in capture datebase/lookup table where Serial Number exists
@@ -15,11 +15,11 @@
 #' @export
 
 
-sheep.report<-function(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mortcol, extracols, keep.aid, out.dir){
+sheep.report<-function(keys, sheepdb, tzone, serialcol, capcol, dateformat, mortcol, extracols, keep.aid, out.dir){
 
   # get sheep data
 
-  sheep.dat<-Ovis::sheep.gps(vecpath, sheepdb, tzone, serialcol, capcol, dateformat, mortcol, extracols = 'AID')
+  sheep.dat<-Ovis::sheep.gps(keys, sheepdb, tzone, serialcol, capcol, dateformat, mortcol, extracols = 'AID')
   sheep.dat<-sheep.dat[sheep.dat$AID %in% keep.aid, ]
 
 
