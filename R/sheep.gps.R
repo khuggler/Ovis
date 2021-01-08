@@ -42,7 +42,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   # transform dates
   sheep.db$CapDate<-as.Date(sheep.db[, capcol], format = "%m/%d/%Y", origin = sheep.db[, capcol])
 
-  sheep.db$MortDate<-as.Date(sheep.db[, mortcol], format = dateformat)
+  sheep.db$MortDate<-as.Date(sheep.db[, mortcol], format = "%m'%d/%Y", origin = sheep.db[,mortcol])
   sheep.db$MortDate<-ifelse(is.na(sheep.db$MortDate), as.character(Sys.Date()), as.character(sheep.db$MortDate))
   sheep.db$MortDate<-as.Date(sheep.db$MortDate, tryFormats = c('%Y-%m-%d', "%m/%d/%Y"))
 
