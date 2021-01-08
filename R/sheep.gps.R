@@ -29,6 +29,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
 
 
 
+
   key_path <- collar::get_paths(keys)
   sheep.dat<-collar::fetch_vectronics(key_path, type = "gps")
   sheep.dat<-data.frame(sheep.dat)
