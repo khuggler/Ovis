@@ -34,7 +34,7 @@ sheep.report<-function(keys, sheepdb, tzone, serialcol, capcol, dateformat, mort
     most.recent<-rbind(sub, most.recent)
   }
 
-  sp::coordinates(most.recent)<-c('Long', 'Lat')
+  sp::coordinates(most.recent)<-c('longitude', 'latitude')
   sp::proj4string(most.recent)<-'+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
 
 
