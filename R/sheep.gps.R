@@ -32,7 +32,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   key_path <- collar::get_paths(keys)
   sheep.dat<-collar::fetch_vectronics(key_path, type = "gps")
   sheep.dat<-data.frame(sheep.dat)
-  sheep.dat$acquisitiontime<-as.POSIXct(sheep.dat$acquisitiontime, format = paste0("%Y-%m-%d", "T", "%H:%M:%S"), tz = "UTC")
+  sheep.dat$acquisitiontime<-as.POSIXct(sheep.dat$acquisitiontime, format = paste0("%Y-%m-%d", "T", "%H:%M:%S"), tz = "UTC", origin = sheep.dat$acquisitiontime)
 
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
   newdb<-sheep.db
@@ -44,10 +44,10 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
 
   sheep.db$MortDate<-as.Date(sheep.db[, mortcol], format = "%m'%d/%Y", origin = sheep.db[,mortcol])
   sheep.db$MortDate<-ifelse(is.na(sheep.db$MortDate), as.character(Sys.Date()), as.character(sheep.db$MortDate))
-  sheep.db$MortDate<-as.Date(sheep.db$MortDate, tryFormats = c('%Y-%m-%d', "%m/%d/%Y"))
+  sheep.db$MortDate<-as.Date(sheep.db$MortDate, tryFormats = c('%Y-%m-%d', "%m/%d/%Y"), origin = sheep.db$MortDate)
 
   sheep.dat$Date<-as.character(strptime(sheep.dat$acquisitiontime, format = "%Y-%m-%d"))
-  sheep.dat$Date<-as.Date(sheep.dat$Date, tryFormats = c('%Y-%m-%d', "%m/%d/%Y"))
+  sheep.dat$Date<-as.Date(sheep.dat$Date, tryFormats = c('%Y-%m-%d', "%m/%d/%Y"), origin = sheep.dat$Date)
 
 
   #sheep.dat$Date<-strftime(sheep.dat$TelemDate, format = "%Y-%m-%d")
@@ -78,9 +78,9 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
       names(sub)<-names(sheep.dat)
 
 
-      sub$acquisitiontime<-as.POSIXct(sub$acquisitiontime, format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+      sub$acquisitiontime<-as.POSIXct(sub$acquisitiontime, format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC", origin = sub$acquisitiontime)
       sub$acquisitiontime<-format(sub$acquisitiontime, tz = "US/Pacific", usetz = FALSE)
-      sub$acquisitiontime<-as.POSIXct(sub$acquisitiontime, format = "%Y-%m-%d %H:%M:%S")
+      sub$acquisitiontime<-as.POSIXct(sub$acquisitiontime, format = "%Y-%m-%d %H:%M:%S", origin = sub$acquisitiontime)
 
       sub<-sub[with(sub, order(-idcollar, acquisitiontime)),]
 
@@ -93,8 +93,8 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
 
     #sheep.dat$X2D.3D<-rep(all.dnld$X2D.3D, length.out = nrow(sheep.dat))
 
-    all.dnld$Date<-as.Date(all.dnld$Date, format = "%m/%d/%Y")
-    sheep.dat$Date<-as.Date(sheep.dat$Date, format = "%Y-%m-%d")
+    all.dnld$Date<-as.Date(all.dnld$Date, format = "%m/%d/%Y", origin = all.dnld$Date)
+    sheep.dat$Date<-as.Date(sheep.dat$Date, format = "%Y-%m-%d", origin = sheep.dat$Date)
 
     sheep.dat<-rbind(sheep.dat, all.dnld)
     sheep.dat<-sheep.dat[with(sheep.dat, order(-idcollar, acquisitiontime)),]
