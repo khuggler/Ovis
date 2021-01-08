@@ -29,6 +29,7 @@ sheep.report<-function(keys, sheepdb, tzone, serialcol, capcol, dateformat, mort
 
   for(i in 1:length(uni)){
     sub<-sheep.dat[sheep.dat$AID == uni[i],]
+    sub<-sub[order(sub$acquisitiontime),]
     sub<-sub[nrow(sub),]
 
     most.recent<-rbind(sub, most.recent)
