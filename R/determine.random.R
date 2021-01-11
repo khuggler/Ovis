@@ -4,11 +4,11 @@
 #' @param poly spatialpolygonsdataframe to sample random locations from
 #' @param pts spatialpointsdataframe of used locations
 #' @param increase.type whether to increase proportionally (i.e., percentage) or numerically (i.e., integers)
-#' @param increment if increase.type = "prop" a proportion in decimal format (e.g., for 10 percent 0.10) if increase type = "number" indicate number of points to increase at each iteration
+#' @param increment if increase.type prop a proportion in decimal format (e.g., for 10 percent 0.10) if increase type number indicate number of points to increase at each iteration
 #' @param number.iterations number of incremental steps to run through
-#' @param seqmin if increase.type = "number", indicate the minimum number of random locations to test
-#' @param seqmax if increase.type = "number", indicate the maximum number of random locations to test
-#' @param inc.ratio Logical. TRUE If you desire the number of random points to be greater than the total number of used points, and equal a 1:1 or greater ratio, otherwise FALSE
+#' @param seqmin if increase.type number, indicate the minimum number of random locations to test
+#' @param seqmax if increase.type number, indicate the maximum number of random locations to test
+#' @param inc.ratio Logical. TRUE If you desire the number of random points to be greater than the total number of used points, otherwise FALSE
 #' @param out.dir path to folder where plot should be saved
 #' @return Returns a data.frame with the summarized values, and saves a pdf of plots to out.dir named RandomPoints
 #' @keywords random, available, sample, raster
@@ -25,7 +25,7 @@ determine.random<-function(rasterstack, poly, pts, increase.type, increment, num
 
   iters<-seq(1,number.iterations, 1)
 
-  if(increase.type = "prop"){
+  if(increase.type == "prop"){
 
     all.rands<-data.frame()
     for(i in 1:length(iters)){
@@ -72,7 +72,7 @@ determine.random<-function(rasterstack, poly, pts, increase.type, increment, num
     }
   }
 
-  if(increase.type = "number"){
+  if(increase.type == "number"){
 
     all.rands<-data.frame()
     seqs<-seq(seqmin, seqmax, increment)
