@@ -24,7 +24,11 @@ Imports:
     RCurl,
     stringr,
     dplyr,
-    adehabitatLT
+    R.utils,
+    here,
+    adehabitatLT,
+    move,
+    snow
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

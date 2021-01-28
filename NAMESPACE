@@ -2,6 +2,7 @@
 
 S3method(merge,disease)
 export(AdultAnnualSurv)
+export(BGBFun)
 export(IFBFat)
 export(bindfun)
 export(cleanFun)
