@@ -3,14 +3,14 @@
 #' @description Use movement data to create plots for Parturition Markdown Document
 #' @param locdat movement data
 #' @param vhist Lookup table 
-#' @param labels vector of labels to include in plots. Options include: "Frequency", TagNumber", and "VitFreq". If these labels are desired in plots, they MUST be included in your lookup table
+#' @param labels vector of labels to include in plots. Options include: "Frequency", "TagNumber", and "VitFreq". If these labels are desired in plots, they MUST be included in your lookup table
 #' @param fold Folder to save plots in
-#' @param plotdataPath path ('C:/Users/mhayes1/Desktop/PlotData') to save plot data
+#' @param plotdataPath path to save plot data
 #' @return Returns plots for markdown in specified folder
 #' @keywords VIT, parturition, markdown
 #' @export
 #' @examples
-#' \donttest{system.time({ vitMap(locdat=mdat2,vidat=vi,vhist=vhist,fold='/home/mhayes1/Desktop/DEERPTesting/plots',spp='deer') })
+#' \donttest{system.time({ vitMap(locdat=mdat3,vhist=vhist,labels = "Frequency", fold= plotfolder, plotdataPath = plotdatapath) })
 #' )}
 #'
 

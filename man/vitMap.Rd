@@ -11,11 +11,11 @@ vitMap(locdat, vhist, labels, fold, plotdataPath, hg = NULL)
 
 \item{vhist}{Lookup table}
 
-\item{labels}{vector of labels to include in plots. Options include: "Frequency", TagNumber", and "VitFreq". If these labels are desired in plots, they MUST be included in your lookup table}
+\item{labels}{vector of labels to include in plots. Options include: "Frequency", "TagNumber", and "VitFreq". If these labels are desired in plots, they MUST be included in your lookup table}
 
 \item{fold}{Folder to save plots in}
 
-\item{plotdataPath}{path ('C:/Users/mhayes1/Desktop/PlotData') to save plot data}
+\item{plotdataPath}{path to save plot data}
 }
 \value{
 Returns plots for markdown in specified folder
@@ -24,7 +24,7 @@ Returns plots for markdown in specified folder
 Use movement data to create plots for Parturition Markdown Document
 }
 \examples{
-\donttest{system.time({ vitMap(locdat=mdat2,vidat=vi,vhist=vhist,fold='/home/mhayes1/Desktop/DEERPTesting/plots',spp='deer') })
+\donttest{system.time({ vitMap(locdat=mdat3,vhist=vhist,labels = "Frequency", fold= plotfolder, plotdataPath = plotdatapath) })
 )}
 
 calculate movement rate
