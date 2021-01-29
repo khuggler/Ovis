@@ -27,10 +27,10 @@ PrettyData<-function(dat,idl,filen){
     s<-s[c(1:12),]
     
   nms<-names(idl)  
-  nms<-nms[!nms %in% c('TelemDate', 'Easting', 'Northing')]
+  nms<-nms[!nms %in% c('Easting', 'Northing')]
   
   
-  s<-s[,c(nms, 'Easting.x','Northing.x')]
+  s<-s[,c(nms, 'TelemDate', 'Easting.x','Northing.x')]
   names(s)[names(s) %in% c("Easting.x", 'Northing.x')] <-c('Easting', 'Northing')
    
     
