@@ -45,7 +45,7 @@ RunPartModel(
 \item{markdownpath}{complete path to location of markdown file for parturition report}
 }
 \value{
-Resulting object is a pdf with movement metrics for each unique animal
+Resulting object is a pdf with movement metrics for each unique animal, and a data.frame with machine learning predictions
 }
 \description{
 Calculate movement statistics including movement rate, first passage time, bivariate gaussian bridge, and machine learning predictions to identify parturition events of ungulates.
