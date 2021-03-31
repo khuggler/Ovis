@@ -33,7 +33,6 @@ cleanFun(
 Resulting object is a list of three elements. First element is a SpatialPointsDataFrame of
 all the GPS data which met the cleaning critera, the second element is all the "bad" data cleaned by
 set parameters and a report of what data was cleaned and for what reason.
-
 Accessing the "good" spatial data is done by cleanFun()[\link{1}]
 Accessing the "bad" spatial data is done by cleanFun()[\link{1}]
 Accessing the cleaning report is done by cleanFun()[\link{1}]
@@ -45,7 +44,6 @@ based on either hdop or 2d/3d fix status. Outputs three results in list format: 
 }
 \examples{
 \donttest{cleanFun(data, projectproj = "+proj=utm +zone=11 +ellps=GRS80 +datum=NAD83 +units=m +no_defs", filename='CleanRep',cval=3,hval=10)}
-
 }
 \keyword{clean,}
 \keyword{cleaning}

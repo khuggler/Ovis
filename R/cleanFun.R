@@ -1,5 +1,4 @@
 #' @title GPS Data Cleaning
-#
 #' @description Cleans output from GStar or Irid. Cleaning is user-defined and
 #' based on either hdop or 2d/3d fix status. Outputs three results in list format: Cleaned Data,
 #' "Bad" data and a report. Data is also cleaned if the 'dist' (from as.ltraj) is greater than the 98 percentile.
@@ -10,11 +9,9 @@
 #' @param spp Character vector of species name (eg. 'Deer')
 #' @param fixstat name of 2d/3d fix column. Defaults to 'X2D.3D'
 #' @param hdopC name of HDOP column. Defaults to 'HDOP'
-#'
 #' @return Resulting object is a list of three elements. First element is a SpatialPointsDataFrame of
 #' all the GPS data which met the cleaning critera, the second element is all the "bad" data cleaned by
 #' set parameters and a report of what data was cleaned and for what reason.
-#'
 #' Accessing the "good" spatial data is done by cleanFun()[[1]]
 #' Accessing the "bad" spatial data is done by cleanFun()[[1]]
 #' Accessing the cleaning report is done by cleanFun()[[1]]
@@ -22,7 +19,7 @@
 #' @export
 #' @examples
 #' \donttest{cleanFun(data, projectproj = "+proj=utm +zone=11 +ellps=GRS80 +datum=NAD83 +units=m +no_defs", filename='CleanRep',cval=3,hval=10)}
-#'
+
 
 
 cleanFun<-function (data, projectedproj, fixstat = "X2D.3D", hdopC = "HDOP", cval = 3,
