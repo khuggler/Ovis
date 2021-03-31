@@ -352,7 +352,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj, subsetmonth,tempd
 
 
 
-  mailR::send.mail(from = from
+  mailR::send.mail(from = from,
             to = to,
             subject = paste0("Parturition Model Updated ", Sys.time()),
             body = "This email contains the latest parturition model run.",
