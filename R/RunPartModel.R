@@ -349,11 +349,6 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj, subsetmonth,tempd
   c<-paste(c,collapse=' ')
   system(c)
 
-
-  return(hg)
-
-
-
   mailR::send.mail(from = from,
             to = to,
             subject = paste0("Parturition Model Updated ", Sys.time()),
