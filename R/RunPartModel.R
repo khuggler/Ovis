@@ -9,6 +9,8 @@
 #' @param tempdir path of directory for products to be saved
 #' @param ncpus number of CPUs for parallel processing. Recommend 1-2 less than max.
 #' @param markdownpath complete path to location of markdown file for parturition report
+#' @param from character vector of email sender
+#' @param to character vector of email recipients
 #' @return Resulting object is a pdf with movement metrics for each unique animal, and a data.frame with machine learning predictions
 #' @keywords parturition, movement rate, first passage time, gaussian bridge, machine learning
 #' @export

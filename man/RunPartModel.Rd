@@ -43,6 +43,10 @@ RunPartModel(
 \item{ncpus}{number of CPUs for parallel processing. Recommend 1-2 less than max.}
 
 \item{markdownpath}{complete path to location of markdown file for parturition report}
+
+\item{from}{character vector of email sender}
+
+\item{to}{character vector of email recipients}
 }
 \value{
 Resulting object is a pdf with movement metrics for each unique animal, and a data.frame with machine learning predictions
