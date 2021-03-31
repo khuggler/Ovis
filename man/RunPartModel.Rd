@@ -28,7 +28,7 @@ RunPartModel(
 )
 }
 \arguments{
-\item{gpsdat}{data.frame of gps data to run model that includes the following columns (in this order): 'IdCol', 'TelemDate', 'x', 'y'. Optional columns include: 'dop', 'X2D.3D', but recommended if available to help improve data cleaning process. IdCol = column that represents unique identifier, TelemDate = as.POSIXct format. Fix time and date, x = x coordinate, y = y coordinate. See data(sheep.gps) for example of expected format.}
+\item{gpsdat}{data.frame of gps data to run model that includes the following columns (in this order): 'IdCol', 'SerialNumber', 'TelemDate', 'x', 'y'. Optional columns include: 'dop', 'X2D.3D', but recommended if available to help improve data cleaning process. IdCol = column that represents unique identifier, TelemDate = as.POSIXct format. Fix time and date, x = x coordinate, y = y coordinate. See data(sheep.gps) for example of expected format.}
 
 \item{lookup}{data.frame of lookup table. This table should include the following columns: 'Frequency', 'Serial', 'IdCol'. Frequency = collar frequency in XXX.XXX format, Serial = Serial number of collar, IdCol = Unique identifier column. MUST match the IdCol in the gpsdat, BirthDate (optional), used to fill in birth dates as they occur and add to plots. Other columns such as VitFrequency, TagNumber are allowed. See data(lookup) for example of expected format.}
 
