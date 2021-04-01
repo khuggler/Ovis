@@ -227,7 +227,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj, subsetmonth,tempd
 
 
   system.time({mdat2<-Ovis::BGBFun(data=mdat,xname='Easting',yname='Northing',timename='TelemDate',
-                                   idname='IdCol',projstring=sp::proj4string(Cdat[[1]]),ncpus=ncpus)})
+                                   idname='IdCol',projstring=sp::proj4string(Cdat[[1]]),ncpus=ncpu)})
 
 
   mdat3<-mdat2
@@ -354,7 +354,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj, subsetmonth,tempd
             subject = paste0("Parturition Model Updated ", Sys.time()),
             body = "This email contains the latest parturition model run.",
             authenticate = TRUE,
-            smtp = list(host.name = "smtp.office365.com", port = 587, user.name = "khuggler@uidaho.edu", passwd = "Gustobailey1957!", tls = TRUE), attach.files = c("C:/Users/khuggler/Desktop/Last3Days_AsotinSheep.html", 'C:/Users/khuggler/Desktop/LambMark/ParturitionMetrics.pdf'))
+            smtp = list(host.name = "smtp.office365.com", port = 587, user.name = "khuggler@uidaho.edu", passwd = "Pattcake1957!", tls = TRUE), attach.files = c("C:/Users/khuggler/Desktop/Last3Days_AsotinSheep.html", 'C:/Users/khuggler/Desktop/LambMark/ParturitionMetrics.pdf'))
 
 }
 
