@@ -227,7 +227,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj, subsetmonth,tempd
 
 
   system.time({mdat2<-Ovis::BGBFun(data=mdat,xname='Easting',yname='Northing',timename='TelemDate',
-                                   idname='IdCol',projstring=sp::proj4string(Cdat[[1]]),ncpus=ncpu)})
+                                   idname='IdCol',projstring=sp::proj4string(Cdat[[1]]),ncpus=ncpus)})
 
 
   mdat3<-mdat2
