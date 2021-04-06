@@ -34,32 +34,33 @@ BGBFun<-function(data,xname,yname,timename,idname,projstring,ncpus,msize=21,wins
   data<-data[complete.cases(data),]
   data<-data[order(data[,idname],data[,timename]),]
   data$Year<-as.numeric(strftime(data[,timename],format='%Y'))
-  
-  
+
+
+
   #Make move object for dynBGB
   ssub<- move::move(data[,xname], data[,yname],data[,timename],
                     proj=sp::CRS(projstring),
                     animal=data[,idname])
-  
+
   #transforming here to Lat/Lon in order to center projection on trajectory
   ssub<- sp::spTransform(ssub, CRSobj=sp::CRS('+proj=longlat +datum=WGS84 +no_defs'))
   spdata<-sp::spTransform(ssub,center=T)
   spdata<-move::split(spdata)
   #create cluster object
   cl <- snow::makeSOCKcluster(rep("localhost", ncpus))
-  
+
   # give data to cluster
   snow::clusterExport(cl,'spdata',envir=environment())
-  
+
   snow::clusterEvalQ(cl, library(move))
-  
+
   # calcate movement statistic, split move stack to consider each trajectory seperately
   dBGBvar <- snow::parLapply(cl=cl,x=spdata, fun=move::dynBGBvariance, margin=msize, windowSize=winsize,
                              locErr=21)
   snow::stopCluster(cl)
-  
+
   outfun<-dBGBvar
-  
+
   outtra<-data.frame()
   for(i in 1:length(unique(ti$IdCol))){
     itraj<-ti[which(ti$IdCol==unique(ti$IdCol)[i]),]
@@ -77,4 +78,3 @@ BGBFun<-function(data,xname,yname,timename,idname,projstring,ncpus,msize=21,wins
 }
 
 
-                  
