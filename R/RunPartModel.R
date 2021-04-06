@@ -6,6 +6,7 @@
 #' @param gpsproj proj4 of gps data
 #' @param projectedproj proj4 of projected coordinate system to use for data cleaning (UTM or Albers Equal Area recommended)
 #' @param tempdir path of directory for products to be saved
+#' @param subsetmonth character of month to subset data
 #' @param ncpus number of CPUs for parallel processing. Recommend 1-2 less than max.
 #' @param markdownpath complete path to location of markdown file for parturition report
 #' @param from character vector of email sender
@@ -16,7 +17,7 @@
 #' @examples
 #' \donttest{RunPartModel(data=gps, lookup = lookup, gpsproj = +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", projectedproj = +proj=utm +zone=11 +ellps=GRS80 +datum=NAD83 +units=m +no_defs", tempdir = "C:/Users/khuggler/Desktop/", ncpus = 5, markdownpath = "C:/Users/Desktop/PartPlots2.Rmd")}
 
-RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,
+RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,subsetmonth,
                    ncpus, markdownpath, from=NA,to=NA){
 
   # create temporrary directories for products to be stored
@@ -205,7 +206,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,
 
 
 
-  tim<-paste(strftime(Sys.time(),format='%Y'),'-', "03", '-01 00:00:00',sep='')
+  tim<-paste(strftime(Sys.time(),format='%Y'),'-', subsetmonth, '-01 00:00:00',sep='')
   mdat<-mdat[which(mdat$TelemDate>=as.POSIXct(tim,'%Y-%m-%d %H:%M:%S',tz='')),]
 
 

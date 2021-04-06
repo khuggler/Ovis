@@ -10,6 +10,7 @@ RunPartModel(
   gpsproj,
   projectedproj,
   tempdir,
+  subsetmonth,
   ncpus,
   markdownpath,
   from = NA,
@@ -26,6 +27,8 @@ RunPartModel(
 \item{projectedproj}{proj4 of projected coordinate system to use for data cleaning (UTM or Albers Equal Area recommended)}
 
 \item{tempdir}{path of directory for products to be saved}
+
+\item{subsetmonth}{character of month to subset data}
 
 \item{ncpus}{number of CPUs for parallel processing. Recommend 1-2 less than max.}
 

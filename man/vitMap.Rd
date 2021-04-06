@@ -4,7 +4,15 @@
 \alias{vitMap}
 \title{Create Plots for Parturition Markdown}
 \usage{
-vitMap(locdat, vhist, labels, fold, plotdataPath, hg = NULL)
+vitMap(
+  locdat,
+  vhist,
+  labels,
+  fold,
+  plotdataPath,
+  subsetmonth = subsetmonth,
+  hg = NULL
+)
 }
 \arguments{
 \item{locdat}{movement data}
@@ -16,6 +24,8 @@ vitMap(locdat, vhist, labels, fold, plotdataPath, hg = NULL)
 \item{fold}{Folder to save plots in}
 
 \item{plotdataPath}{path to save plot data}
+
+\item{subsetmonth}{character of month to subset. Must match subsetmonth in full function.}
 }
 \value{
 Returns plots for markdown in specified folder
@@ -29,7 +39,7 @@ Use movement data to create plots for Parturition Markdown Document
 
 calculate movement rate
 bring in frequency for report
-rolling mean 
+rolling mean
 2-day quantile
 GAUSSIAN BRIDGE METRICS
 }
