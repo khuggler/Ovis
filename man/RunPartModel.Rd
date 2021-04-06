@@ -14,17 +14,7 @@ RunPartModel(
   ncpus,
   markdownpath,
   from = NA,
-  to = NA,
-  subject = NA,
-  SP = NA,
-  progpath = NA,
-  username = NA,
-  password = NA,
-  email = "no",
-  ST = TRUE,
-  STUser = NULL,
-  STPass = NULL,
-  systype = "Win"
+  to = NA
 )
 }
 \arguments{
