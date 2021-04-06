@@ -207,7 +207,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj, subsetmonth,tempd
 
 
 
-
+  subsetmonth=subsetmonth
 
 
 
