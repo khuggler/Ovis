@@ -354,7 +354,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj, subsetmonth,tempd
             subject = paste0("Parturition Model Updated ", Sys.time()),
             body = "This email contains the latest parturition model run.",
             authenticate = TRUE,
-            smtp = list(host.name = "smtp.office365.com", port = 587, user.name = "khuggler@uidaho.edu", passwd = "Pattcake1957!", tls = TRUE), attach.files = c("C:/Users/khuggler/Desktop/Last3Days_AsotinSheep.html", 'C:/Users/khuggler/Desktop/LambMark/ParturitionMetrics.pdf'))
+            smtp = list(host.name = "smtp.gmail.com", port = 587, user.name = "blue.mtn.sheep@gmail.com", passwd = "Asotinsheep1957!", tls = TRUE), attach.files = c("C:/Users/khuggler/Desktop/Last3Days_AsotinSheep.html", 'C:/Users/khuggler/Desktop/LambMark/ParturitionMetrics.pdf'))
 
 }
 
