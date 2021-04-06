@@ -5,7 +5,6 @@
 #' @param lookup data.frame of lookup table. This table should include the following columns: 'Frequency', 'Serial', 'IdCol'. Frequency = collar frequency in XXX.XXX format, Serial = Serial number of collar, IdCol = Unique identifier column. MUST match the IdCol in the gpsdat, BirthDate (optional), used to fill in birth dates as they occur and add to plots. Other columns such as VitFrequency, TagNumber are allowed. See data(lookup) for example of expected format.
 #' @param gpsproj proj4 of gps data
 #' @param projectedproj proj4 of projected coordinate system to use for data cleaning (UTM or Albers Equal Area recommended)
-#' @param subsetmonth character object indicating which month to use as the start date for analysis. For example, for a start date of March 1 of current year, use "03"
 #' @param tempdir path of directory for products to be saved
 #' @param ncpus number of CPUs for parallel processing. Recommend 1-2 less than max.
 #' @param markdownpath complete path to location of markdown file for parturition report
@@ -15,9 +14,9 @@
 #' @keywords parturition, movement rate, first passage time, gaussian bridge, machine learning
 #' @export
 #' @examples
-#' \donttest{RunPartModel(data=gps, lookup = lookup, gpsproj = +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", projectedproj = +proj=utm +zone=11 +ellps=GRS80 +datum=NAD83 +units=m +no_defs", subsetmonth = "01", tempdir = "C:/Users/khuggler/Desktop/", ncpus = 5, markdownpath = "C:/Users/Desktop/PartPlots2.Rmd")}
+#' \donttest{RunPartModel(data=gps, lookup = lookup, gpsproj = +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", projectedproj = +proj=utm +zone=11 +ellps=GRS80 +datum=NAD83 +units=m +no_defs", tempdir = "C:/Users/khuggler/Desktop/", ncpus = 5, markdownpath = "C:/Users/Desktop/PartPlots2.Rmd")}
 
-RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,subsetmonth,tempdir,
+RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,
                    ncpus, markdownpath, from=NA,to=NA){
 
   # create temporrary directories for products to be stored
@@ -205,11 +204,8 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,subsetmonth,tempdi
 
 
 
-  subsetmonth<-"03"
 
-
-
-  tim<-paste(strftime(Sys.time(),format='%Y'),'-', subsetmonth, '-01 00:00:00',sep='')
+  tim<-paste(strftime(Sys.time(),format='%Y'),'-', "03", '-01 00:00:00',sep='')
   mdat<-mdat[which(mdat$TelemDate>=as.POSIXct(tim,'%Y-%m-%d %H:%M:%S',tz='')),]
 
 

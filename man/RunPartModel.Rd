@@ -9,7 +9,6 @@ RunPartModel(
   lookup,
   gpsproj,
   projectedproj,
-  subsetmonth,
   tempdir,
   ncpus,
   markdownpath,
@@ -25,8 +24,6 @@ RunPartModel(
 \item{gpsproj}{proj4 of gps data}
 
 \item{projectedproj}{proj4 of projected coordinate system to use for data cleaning (UTM or Albers Equal Area recommended)}
-
-\item{subsetmonth}{character object indicating which month to use as the start date for analysis. For example, for a start date of March 1 of current year, use "03"}
 
 \item{tempdir}{path of directory for products to be saved}
 
@@ -45,7 +42,7 @@ Resulting object is a pdf with movement metrics for each unique animal, and a da
 Calculate movement statistics including movement rate, first passage time, bivariate gaussian bridge, and machine learning predictions to identify parturition events of ungulates.
 }
 \examples{
-\donttest{RunPartModel(data=gps, lookup = lookup, gpsproj = +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", projectedproj = +proj=utm +zone=11 +ellps=GRS80 +datum=NAD83 +units=m +no_defs", subsetmonth = "01", tempdir = "C:/Users/khuggler/Desktop/", ncpus = 5, markdownpath = "C:/Users/Desktop/PartPlots2.Rmd")}
+\donttest{RunPartModel(data=gps, lookup = lookup, gpsproj = +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", projectedproj = +proj=utm +zone=11 +ellps=GRS80 +datum=NAD83 +units=m +no_defs", tempdir = "C:/Users/khuggler/Desktop/", ncpus = 5, markdownpath = "C:/Users/Desktop/PartPlots2.Rmd")}
 }
 \keyword{bridge,}
 \keyword{first}
