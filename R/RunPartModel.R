@@ -17,7 +17,7 @@
 #' @examples
 #' \donttest{RunPartModel(data=gps, lookup = lookup, gpsproj = +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", projectedproj = +proj=utm +zone=11 +ellps=GRS80 +datum=NAD83 +units=m +no_defs", subsetmonth = "01", tempdir = "C:/Users/khuggler/Desktop/", ncpus = 5, markdownpath = "C:/Users/Desktop/PartPlots2.Rmd")}
 
-RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj, subsetmonth,tempdir,
+RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,subsetmonth,tempdir,
                    ncpus, markdownpath, from=NA,to=NA){
 
   # create temporrary directories for products to be stored
@@ -205,7 +205,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj, subsetmonth,tempd
 
 
 
-  subsetmonth=subsetmonth
+  subsetmonth<-"03"
 
 
 
