@@ -185,7 +185,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,subsetmont
 
 
 
-
+print('Maps are done')
 
 
 
@@ -199,6 +199,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,subsetmont
 
   system.time({Cdat<-Ovis::cleanFun(dat2, projectedproj, hdopC = "dop", filename = CleanRep)})
 
+  print('Date is cleaned')
 
   mdat<-as.data.frame(Cdat[[1]])
   mdat$IdCol<-as.character(mdat$IdCol)
@@ -224,6 +225,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,subsetmont
   system.time({mdat2<-Ovis::BGBFun(data=mdat,xname='Easting',yname='Northing',timename='TelemDate',
                                    idname='IdCol',projstring=sp::proj4string(Cdat[[1]]),ncpus=ncpus)})
 
+print('Gaussian bridge metrics are finished')
 
   mdat3<-mdat2
   system.time({hg<-Ovis::MLPartPred(mdat3,spp='BHS')})
@@ -234,6 +236,7 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,subsetmont
   Ovis::vitMap(locdat=mdat3,vhist=vhist,fold=plotfolder,labels = "Frequency",
         plotdataPath=plotdatapath,hg=hg)
 
+  print('Tables are finished')
 
 
   all.locs<-data.frame()
@@ -265,10 +268,12 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,subsetmont
   saveRDS(tabby, file = datastore)
 
 
-
+print('Recent locations finished')
 
   Ovis::PrettyData(dat=mdat3,idl=tabby,filen=PrettyDataStore)
   hj<-readRDS(PrettyDataStore)
+
+  print('Data is pretty')
 
 
   #hj$MatchFreq<-gsub('.','',as.character(hj$`Mom Freq`),fixed=T)
@@ -343,6 +348,9 @@ RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,subsetmont
 
   c<-paste(c,collapse=' ')
   system(c)
+
+
+  print('PDFs are made')
 
   mailR::send.mail(from = from,
             to = to,

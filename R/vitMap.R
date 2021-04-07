@@ -15,7 +15,7 @@
 #' )}
 #'
 
-vitMap<-function(locdat,vhist,labels,fold,plotdataPath,subsetmonth = subsetmonth, hg=NULL){
+vitMap<-function(locdat,vhist,labels,fold,plotdataPath,subsetmonth, hg=NULL){
 
     locdat$IdCol <- as.character(locdat$IdCol)
 
