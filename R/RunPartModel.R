@@ -233,7 +233,7 @@ print('Gaussian bridge metrics are finished')
 
 
 
-  Ovis::vitMap(locdat=mdat3,vhist=vhist,fold=plotfolder,labels = "Frequency",
+  Ovis::vitMap(locdat=mdat3,vhist=vhist,fold=plotfolder,subsetmonth = subsetmonth, labels = "Frequency",
         plotdataPath=plotdatapath,hg=hg)
 
   print('Tables are finished')
