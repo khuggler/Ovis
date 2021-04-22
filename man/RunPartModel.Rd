@@ -13,8 +13,11 @@ RunPartModel(
   subsetmonth,
   ncpus,
   markdownpath,
+  user,
+  pass,
   from = NA,
-  to = NA
+  to = NA,
+  attach = NA
 )
 }
 \arguments{
@@ -34,9 +37,15 @@ RunPartModel(
 
 \item{markdownpath}{complete path to location of markdown file for parturition report}
 
+\item{user}{character of email username}
+
+\item{pass}{character of email password}
+
 \item{from}{character vector of email sender}
 
 \item{to}{character vector of email recipients}
+
+\item{attach}{character vector of paths to email attachments}
 }
 \value{
 Resulting object is a pdf with movement metrics for each unique animal, and a data.frame with machine learning predictions

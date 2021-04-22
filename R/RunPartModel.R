@@ -9,8 +9,11 @@
 #' @param subsetmonth character of month to subset data
 #' @param ncpus number of CPUs for parallel processing. Recommend 1-2 less than max.
 #' @param markdownpath complete path to location of markdown file for parturition report
+#' @param user character of email username
+#' @param pass character of email password
 #' @param from character vector of email sender
 #' @param to character vector of email recipients
+#' @param attach character vector of paths to email attachments
 #' @return Resulting object is a pdf with movement metrics for each unique animal, and a data.frame with machine learning predictions
 #' @keywords parturition, movement rate, first passage time, gaussian bridge, machine learning
 #' @export
@@ -18,7 +21,7 @@
 #' \donttest{RunPartModel(data=gps, lookup = lookup, gpsproj = +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", projectedproj = +proj=utm +zone=11 +ellps=GRS80 +datum=NAD83 +units=m +no_defs", tempdir = "C:/Users/khuggler/Desktop/", ncpus = 5, markdownpath = "C:/Users/Desktop/PartPlots2.Rmd")}
 
 RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,subsetmonth,
-                   ncpus, markdownpath, from=NA,to=NA){
+                   ncpus, markdownpath, user, pass, from=NA,to=NA, attach = NA){
 
   # create temporrary directories for products to be stored
   options(warn=-1)
@@ -357,7 +360,7 @@ print('Recent locations finished')
             subject = paste0("Parturition Model Updated ", Sys.time()),
             body = "This email contains the latest parturition model run.",
             authenticate = TRUE,
-            smtp = list(host.name = "smtp.gmail.com", port = 587, user.name = "blue.mtn.sheep@gmail.com", passwd = "Asotinsheep1957!", tls = TRUE), attach.files = c("C:/Users/khuggler/Desktop/Last3Days_AsotinSheep.html", 'C:/Users/khuggler/Desktop/LambMark/ParturitionMetrics.pdf'))
+            smtp = list(host.name = "smtp.gmail.com", port = 587, user.name = user, passwd = pass, tls = TRUE), attach.files = attach)
 
 }
 
