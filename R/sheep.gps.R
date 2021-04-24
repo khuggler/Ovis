@@ -52,7 +52,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   sheep.dat$Date<-as.Date(sheep.dat$Date, tryFormats = c('%Y-%m-%d', "%m/%d/%Y"))
 
 
-  .#sheep.dat$Date<-strftime(sheep.dat$TelemDate, format = "%Y-%m-%d")
+  #sheep.dat$Date<-strftime(sheep.dat$TelemDate, format = "%Y-%m-%d")
 
   sheep.dat<-sheep.dat[, c(1:4, 6:13,41:44,47)]
 
