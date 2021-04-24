@@ -4,8 +4,17 @@
 \alias{sheep.gps}
 \title{sheep.gps}
 \usage{
-sheep.gps(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data,
-  dnld.fold, extracols)
+sheep.gps(
+  keys,
+  sheepdb,
+  tzone,
+  capcol,
+  dateformat,
+  mortcol,
+  dnld.data,
+  dnld.fold,
+  extracols
+)
 }
 \arguments{
 \item{keys}{full path to one or more key files}

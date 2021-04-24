@@ -4,8 +4,17 @@
 \alias{sheep.report}
 \title{sheep.report}
 \usage{
-sheep.report(keys, sheepdb, tzone, capcol, dateformat, mortcol, extracols,
-  keep.aid, out.dir)
+sheep.report(
+  keys,
+  sheepdb,
+  tzone,
+  capcol,
+  dateformat,
+  mortcol,
+  extracols,
+  keep.aid,
+  out.dir
+)
 }
 \arguments{
 \item{keys}{full path to one or more key files}

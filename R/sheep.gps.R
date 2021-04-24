@@ -34,6 +34,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   sheep.dat<-collar::fetch_vectronics(key_path, type = "gps")
   sheep.dat<-data.frame(sheep.dat)
   sheep.dat$acquisitiontime<-as.POSIXct(sheep.dat$acquisitiontime, format = paste0("%Y-%m-%d", "T", "%H:%M:%S"), tz = "UTC", origin = sheep.dat$acquisitiontime)
+  attr(sheep.dat$acquisitiontime, "tzone")<-tzone
 
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
   newdb<-sheep.db
@@ -51,7 +52,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   sheep.dat$Date<-as.Date(sheep.dat$Date, tryFormats = c('%Y-%m-%d', "%m/%d/%Y"))
 
 
-  #sheep.dat$Date<-strftime(sheep.dat$TelemDate, format = "%Y-%m-%d")
+  .#sheep.dat$Date<-strftime(sheep.dat$TelemDate, format = "%Y-%m-%d")
 
   sheep.dat<-sheep.dat[, c(1:4, 6:13,41:44,47)]
 
@@ -131,7 +132,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
 
       if(is.na(xxx[1,2])){next}
       ss<-sheep.dat[sheep.dat$idcollar==xxx[1,2],]
-      ss<-ss[(ss$Date> xxx[,3])&ss$Date < (xxx[,4]),]
+      ss<-ss[(ss$Date> xxx[,3])&ss$Date < (xxx[,4] + 1),]
       ss<-ss[complete.cases(ss$latitude),]
 
       if(nrow(ss)==0){next}
