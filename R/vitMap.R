@@ -98,7 +98,7 @@ vitMap<-function(locdat,vhist,labels,fold,plotdataPath,subsetmonth, hg=NULL){
       plot(sub$TelemDate, sub$MR, type = "l", ylab = "Movement Rate",
            xlab = "Date", main = "Movement Rate", cex = 1.25)
 
-      #abline(v=vhsub$ActBD[1],col='green',lty=2)
+      abline(v=vhsub$BirthDate[1],col='green',lty=2)
       sub$MRM <- NA
 
       #' rolling mean
@@ -138,7 +138,7 @@ vitMap<-function(locdat,vhist,labels,fold,plotdataPath,subsetmonth, hg=NULL){
 
 
       abline(h = quantile(sub$FPT50, na.rm = T)[4], col = "red")
-      #abline(v=vhsub$ActBD[1],col='green',lty=2)
+      abline(v=vhsub$BirthDate[1],col='green',lty=2)
 
 
       plot(sub$TelemDate, sub$FPT100, type = "l", ylab = "FPT (hours)",
@@ -146,10 +146,12 @@ vitMap<-function(locdat,vhist,labels,fold,plotdataPath,subsetmonth, hg=NULL){
 
 
       abline(h = quantile(sub$FPT100, na.rm = T)[4], col = "red")
+      abline(v=vhsub$BirthDate[1],col='green',lty=2)
 
      plot(sub$TelemDate, sub$FPT150, type = "l", ylab = "FPT (hours)",
        xlab = "Date", main = "FPT 150m radius", cex = 1.25)
        abline(h = quantile(sub$FPT150, na.rm = T)[4], col = "red")
+       abline(v=vhsub$BirthDate[1],col='green',lty=2)
 
 
 
@@ -169,6 +171,8 @@ vitMap<-function(locdat,vhist,labels,fold,plotdataPath,subsetmonth, hg=NULL){
         lines(predsub$TelemDate,predsub$Pred2,col='red',lwd=1)
         lines(predsub$TelemDate,predsub$Pred1,col='blue',lwd=2)
         #abline(v=vhsub$ActBD[1],col='green',lty=2)
+        abline(v=vhsub$BirthDate[1],col='green',lty=2)
+
       }
 
 
