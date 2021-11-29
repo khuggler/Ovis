@@ -101,7 +101,7 @@ collar.history<-function(data, idcol, study, capdate, mortdate){
 
         colhist$Serial2[k]<-sub$NewSerialNumber[2]
         colhist$Serial2Start[k]<-colhist$Serial1End[k]
-        colhist$Serial2End[k]<-max(sub[,mortdate])
+        colhist$Serial2End[k]<-max(sub[,capdate][3])
 
         colhist$Serial3[k]<-sub$NewSerialNumber[3]
         colhist$Serial3Start[k]<-colhist$Serial2End[k]
