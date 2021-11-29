@@ -71,6 +71,8 @@ collar.history<-function(data, idcol, study, capdate, mortdate){
     colhist$Serial1End<-as.Date(colhist$Serial1End, format = '%Y-%m-%d')
     colhist$Serial2Start<-as.Date(colhist$Serial1Start, format = '%Y-%m-%d')
     colhist$Serial2End<-as.Date(colhist$Serial1End, format = '%Y-%m-%d')
+    colhist$Serial3Start<-as.Date(colhist$Serial1Start, format = '%Y-%m-%d')
+    colhist$Serial3End<-as.Date(colhist$Serial1End, format = '%Y-%m-%d')
 
     for(k in 1:length(uni)){
       sub<-data[data[,idcol] == uni[k],]
