@@ -44,7 +44,9 @@ collar.history<-function(data, idcol, study, capdate, mortdate){
       colhist$Serial1End[k]<-sub[,mortdate]
     }
 
-    if(nrow(sub)>1){
+
+
+    if(nrow(sub)>2){
       colhist$AnimalID[k]<-sub[,idcol][1]
       colhist$GMU[k]<-sub$GMU[1]
       colhist$PMU[k]<-sub$PMU[1]
@@ -93,7 +95,47 @@ collar.history<-function(data, idcol, study, capdate, mortdate){
         colhist$Serial1End[k]<-sub[,mortdate]
       }
 
-      if(nrow(sub)>1){
+
+
+      if(nrow(sub) >2 & sub$NewSerialNumber[1] == sub$NewSerialNumber[2]){
+        colhist$AnimalID[k]<-sub[,idcol][1]
+        colhist$Serial1[k]<-sub$NewSerialNumber[1]
+        colhist$Serial1Start[k]<-sub[,capdate][1]
+        colhist$Serial1End[k]<-sub[,capdate][3]
+
+        colhist$Serial2[k]<-sub$NewSerialNumber[3]
+        colhist$Serial2Start[k]<-colhist$Serial1End[k]
+        colhist$Serial2End[k]<-max(sub[,mortdate][2])
+
+      }
+
+
+      if(nrow(sub) == 2 & sub$NewSerialNumber[1] != sub$NewSerialNumber[2]){
+        colhist$AnimalID[k]<-sub[,idcol][1]
+        colhist$Serial1[k]<-sub$NewSerialNumber[1]
+        colhist$Serial1Start[k]<-sub[,capdate][1]
+        colhist$Serial1End[k]<-sub[,capdate][2]
+
+        colhist$Serial2[k]<-sub$NewSerialNumber[2]
+        colhist$Serial2Start[k]<-colhist$Serial1End[k]
+        colhist$Serial2End[k]<-max(sub[,mortdate][2])
+
+      }
+
+
+      if(nrow(sub) >2 & sub$NewSerialNumber[2] == sub$NewSerialNumber[3]){
+        colhist$AnimalID[k]<-sub[,idcol][1]
+        colhist$Serial1[k]<-sub$NewSerialNumber[1]
+        colhist$Serial1Start[k]<-sub[,capdate][1]
+        colhist$Serial1End[k]<-sub[,capdate][2]
+
+        colhist$Serial2[k]<-sub$NewSerialNumber[2]
+        colhist$Serial2Start[k]<-colhist$Serial1End[k]
+        colhist$Serial2End[k]<-max(sub[,mortdate][2])
+
+      }
+
+      if(nrow(sub) >1 & length(unique(sub$NewSerialNumber)) == 3){
         colhist$AnimalID[k]<-sub[,idcol][1]
         colhist$Serial1[k]<-sub$NewSerialNumber[1]
         colhist$Serial1Start[k]<-sub[,capdate][1]
@@ -108,6 +150,8 @@ collar.history<-function(data, idcol, study, capdate, mortdate){
         colhist$Serial3End[k]<-max(sub[,mortdate])
 
       }
+
+      print(uni[k])
     }
     colhist<-colhist[complete.cases(colhist[,"AnimalID"]),]
 
