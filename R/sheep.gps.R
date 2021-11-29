@@ -55,6 +55,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   #sheep.dat$Date<-strftime(sheep.dat$TelemDate, format = "%Y-%m-%d")
 
   sheep.dat<-sheep.dat[, c(1:4, 6:13,41:44,47)]
+  sheep.dat$type<-'Iridium'
 
   if(dnld.data == TRUE){
     files<-list.files(dnld.fold, full.names = T)
@@ -75,9 +76,9 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
 
       # fix order of columns
 
-      sheep.dat<-sheep.dat[, c('idcollar', 'acquisitiontime', 'dop', 'temperature', 'latitude', 'longitude', 'Date')]
+      sheep.dat<-sheep.dat[, c('idcollar', 'acquisitiontime', 'dop', 'temperature', 'latitude', 'longitude', 'Date', 'type')]
 
-      names(sub)<-names(sheep.dat)
+      names(sub)<-names(sheep.dat[1:ncol(sheep.dat)-1])
 
 
       sub$acquisitiontime<-as.POSIXct(sub$acquisitiontime, format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
@@ -86,9 +87,10 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
 
       sub<-sub[with(sub, order(-idcollar, acquisitiontime)),]
 
-
+      sub$type<-'Download'
 
       all.dnld<-rbind(sub, all.dnld)
+
 
 
     }
@@ -128,6 +130,10 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
 
       if(l == 2){
         xxx<-xx[, c('AnimalID', 'Serial2', 'Serial2Start', 'Serial2End')]
+      }
+
+      if(l==3){
+        xxx<-xx[, c('AnimalID', 'Serial3', 'Serial3Start', 'Serial3End')]
       }
 
       if(is.na(xxx[1,2])){next}
