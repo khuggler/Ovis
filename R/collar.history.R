@@ -65,7 +65,7 @@ collar.history<-function(data, idcol, study, capdate, mortdate){
 
     uni<-unique(data[,idcol])
 
-    colhist<-data.frame(AnimalID = rep(NA, length(uni)), Serial1 = rep(NA, length(uni)), Serial2 = rep(NA, length(uni)), Serial1Start = rep(NA, length(uni)), Serial1End = rep(NA, length(uni)), Serial2Start = rep(NA, length(uni)), Serial2End = rep(NA, length(uni)))
+    colhist<-data.frame(AnimalID = rep(NA, length(uni)), Serial1 = rep(NA, length(uni)), Serial2 = rep(NA, length(uni)), Serial3 = rep(NA, length(uni)), Serial1Start = rep(NA, length(uni)), Serial1End = rep(NA, length(uni)), Serial2Start = rep(NA, length(uni)), Serial2End = rep(NA, length(uni)),Serial3Start = rep(NA, length(uni)), Serial3End = rep(NA, length(uni)))
 
     colhist$Serial1Start<-as.Date(colhist$Serial1Start, format = '%Y-%m-%d')
     colhist$Serial1End<-as.Date(colhist$Serial1End, format = '%Y-%m-%d')
