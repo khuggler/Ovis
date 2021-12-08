@@ -138,7 +138,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
 
       if(is.na(xxx[1,2])){next}
       ss<-sheep.dat[sheep.dat$idcollar==xxx[1,2],]
-      ss<-ss[(ss$Date> xxx[,3])&ss$Date < (xxx[,4] + 1),]
+      ss<-ss[(ss$Date > xxx[,3])&ss$Date < (xxx[,4]),]
       ss<-ss[complete.cases(ss$latitude),]
 
       if(nrow(ss)==0){next}
