@@ -2,6 +2,7 @@
 #' @description Scrape GPS data  from online server, and merge with downloaded data from collars
 #' @param keys full path to one or more key files
 #' @param sheepdb path to sheep capture database
+#' @param collarhistory path to collar history file
 #' @param tzone desired time zone of gps data: "MST" or "US/Pacific"
 #' @param capcol name of column where capture/start date exists
 #' @param dateformat character string of the format that date columns are in
@@ -16,7 +17,7 @@
 #'
 
 
-sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data, dnld.fold, extracols){
+sheep.gps<-function(keys, sheepdb, collarhistory, tzone, capcol, dateformat, mortcol, dnld.data, dnld.fold, extracols){
 
   if(!'collar' %in% installed.packages()){
   devtools::install_github("Huh/collar", force = T)
@@ -37,7 +38,7 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
   attr(sheep.dat$acquisitiontime, "tzone")<-tzone
 
   sheep.db<-read.csv(sheepdb, stringsAsFactors = F)
-  newdb<-sheep.db
+  newdb<-read.csv(collarhistory, stringsAsFactors = F)
 
 
 
@@ -113,17 +114,28 @@ sheep.gps<-function(keys, sheepdb, tzone, capcol, dateformat, mortcol, dnld.data
 
   }
 
-  col.hist<-Ovis::collar.history(data = newdb, idcol = "AID", study = "washington", capdate = "CapDate", mortdate = "MortDate")
+  decision <- readline(prompt = "Have you updated collar history ? y/(n)")
+
+  if(decision == "y"){
+  col.hist<-Ovis::collar.history(data = newdb, idcol = "AnimalID", study = "washington", capdate = "CapDate", mortdate = "MortDate")
+  }
+
+  if(decision == "n"){stopifnot('You have updated collar history')}
 
   uni<-unique(col.hist$AnimalID)
 
-  #final.sheep<-data.frame()
+  col.hist$Serial1Start <-as.character(as.Date(col.hist$Serial1Start, format = "%Y-%m-%d"))
+  col.hist$Serial1End <-as.character(as.Date(col.hist$Serial1End, format = "%Y-%m-%d"))
+  col.hist$Serial2Start <-as.character(as.Date(col.hist$Serial2Start, format = "%Y-%m-%d"))
+  col.hist$Serial2End <-as.character(as.Date(col.hist$Serial2End, format = "%Y-%m-%d"))
+  col.hist$Serial3Start <-as.character(as.Date(col.hist$Serial3Start, format = "%Y-%m-%d"))
+  col.hist$Serial3End <-as.character(as.Date(col.hist$Serial3End, format = "%Y-%m-%d"))
 
   for(k in 1:nrow(col.hist)){
     xx<-col.hist[k, ]
     print(k)
 
-    for(l in 1:2){
+    for(l in 1:3){
       if(l == 1){
         xxx<-xx[, c('AnimalID', 'Serial1', 'Serial1Start', 'Serial1End')]
       }

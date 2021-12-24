@@ -7,6 +7,7 @@
 sheep.gps(
   keys,
   sheepdb,
+  collarhistory,
   tzone,
   capcol,
   dateformat,
@@ -20,6 +21,8 @@ sheep.gps(
 \item{keys}{full path to one or more key files}
 
 \item{sheepdb}{path to sheep capture database}
+
+\item{collarhistory}{path to collar history file}
 
 \item{tzone}{desired time zone of gps data: "MST" or "US/Pacific"}
 
