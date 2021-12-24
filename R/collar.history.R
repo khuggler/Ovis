@@ -94,12 +94,9 @@ collar.history<-function(data, idcol, study, capdate, mortdate){
     colhist<-rbind(sub, colhist)
    }
 
-  }
 
     colhist<-colhist[complete.cases(colhist[,"AnimalID"]),]
-
-
-
+  }
 
 
 
