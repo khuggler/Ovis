@@ -67,109 +67,40 @@ collar.history<-function(data, idcol, study, capdate, mortdate){
 
     uni<-unique(data[,idcol])
 
-    colhist<-data.frame(AnimalID = rep(NA, length(uni)), Serial1 = rep(NA, length(uni)), Serial2 = rep(NA, length(uni)), Serial3 = rep(NA, length(uni)), Serial1Start = rep(NA, length(uni)), Serial1End = rep(NA, length(uni)), Serial2Start = rep(NA, length(uni)), Serial2End = rep(NA, length(uni)),Serial3Start = rep(NA, length(uni)), Serial3End = rep(NA, length(uni)))
+    data$Serial1Start <-as.character(as.Date(data$Serial1Start, format = "%m/%d/%Y"))
+    data$Serial1End <-as.character(as.Date(data$Serial1End, format = "%m/%d/%Y"))
+    data$Serial2Start <-as.character(as.Date(data$Serial2Start, format = "%m/%d/%Y"))
+    data$Serial2End <-as.character(as.Date(data$Serial2End, format = "%m/%d/%Y"))
+    data$Serial3Start <-as.character(as.Date(data$Serial3Start, format = "%m/%d/%Y"))
+    data$Serial3End <-as.character(as.Date(data$Serial3End, format = "%m/%d/%Y"))
 
-    colhist$Serial1Start<-as.Date(colhist$Serial1Start, format = '%Y-%m-%d')
-    colhist$Serial1End<-as.Date(colhist$Serial1End, format = '%Y-%m-%d')
-    colhist$Serial2Start<-as.Date(colhist$Serial1Start, format = '%Y-%m-%d')
-    colhist$Serial2End<-as.Date(colhist$Serial1End, format = '%Y-%m-%d')
-    colhist$Serial3Start<-as.Date(colhist$Serial1Start, format = '%Y-%m-%d')
-    colhist$Serial3End<-as.Date(colhist$Serial1End, format = '%Y-%m-%d')
+    colhist<-data.frame()
+   for(i in 1:length(uni)){
+     sub<-data[data$AnimalID == uni[i],]
 
-    for(k in 1:length(uni)){
-      sub<-data[data[,idcol] == uni[k],]
-      sub<-sub[complete.cases(sub[,idcol]),]
+     if(is.na(sub$Serial3) & is.na(sub$Serial2)){
+       sub$Serial1End<-ifelse(is.na(sub$Serial1End), as.character(Sys.Date()), sub$Serial1End)
 
-      sub[,capdate]<-as.Date(sub[,capdate], tryFormats = c('%m/%d/%Y', '%Y-%m-%d'))
-
-      sub[,mortdate]<-ifelse(sub[,mortdate] == "", NA, sub[,mortdate])
-      sub[,mortdate]<-as.Date(sub[,mortdate], tryFormats = c('%m/%d/%Y', '%Y-%m-%d'))
-      sub[,mortdate]<-ifelse(is.na(sub[,mortdate]), as.character(Sys.Date()), as.character(sub[,mortdate]))
-
-
-
-      if(nrow(sub) == 1){
-        colhist$AnimalID[k]<-sub[,idcol]
-        colhist$Serial1[k]<-sub$NewSerialNumber
-        colhist$Serial1Start[k]<-sub[,capdate]
-        colhist$Serial1End[k]<-sub[,mortdate]
-      }
+     }
+     if(!is.na(sub$Serial1) & !is.na(sub$Serial2)){
+       sub$Serial2End<-ifelse(is.na(sub$Serial2End), as.character(Sys.Date()), sub$Serial2End)
+     }
 
 
+     if(!is.na(sub$Serial3)){
+       sub$Serial3End<-ifelse(is.na(sub$Serial3End), as.character(Sys.Date()), sub$Serial3End)
+     }
 
-      if(nrow(sub) >2 & sub$NewSerialNumber[1] == sub$NewSerialNumber[2]){
-        colhist$AnimalID[k]<-sub[,idcol][1]
-        colhist$Serial1[k]<-sub$NewSerialNumber[1]
-        colhist$Serial1Start[k]<-sub[,capdate][1]
-        colhist$Serial1End[k]<-sub[,capdate][3]
+    colhist<-rbind(sub, colhist)
+   }
 
-        colhist$Serial2[k]<-sub$NewSerialNumber[3]
-        colhist$Serial2Start[k]<-colhist$Serial1End[k]
-        colhist$Serial2End[k]<-max(sub[,mortdate][2])
+  }
 
-      }
-
-
-      if(nrow(sub) == 2 & sub$NewSerialNumber[1] != sub$NewSerialNumber[2]){
-        colhist$AnimalID[k]<-sub[,idcol][1]
-        colhist$Serial1[k]<-sub$NewSerialNumber[1]
-        colhist$Serial1Start[k]<-sub[,capdate][1]
-        colhist$Serial1End[k]<-sub[,capdate][2]
-
-        colhist$Serial2[k]<-sub$NewSerialNumber[2]
-        colhist$Serial2Start[k]<-colhist$Serial1End[k]
-        colhist$Serial2End[k]<-max(sub[,mortdate][2])
-
-      }
-
-      if(nrow(sub) == 2 & sub$NewSerialNumber[1] == sub$NewSerialNumber[2]){
-        colhist$AnimalID[k]<-sub[,idcol][1]
-        colhist$Serial1[k]<-sub$NewSerialNumber[1]
-        colhist$Serial1Start[k]<-sub[,capdate][1]
-        colhist$Serial1End[k]<-sub[,mortdate][1]
-
-        colhist$Serial2[k]<-sub$NewSerialNumber[2]
-        colhist$Serial2Start[k]<-sub[,capdate][2]
-        colhist$Serial2End[k]<-max(sub[,mortdate][2])
-
-      }
-
-
-      if(nrow(sub) >2 & sub$NewSerialNumber[2] == sub$NewSerialNumber[3]){
-        colhist$AnimalID[k]<-sub[,idcol][1]
-        colhist$Serial1[k]<-sub$NewSerialNumber[1]
-        colhist$Serial1Start[k]<-sub[,capdate][1]
-        colhist$Serial1End[k]<-sub[,capdate][2]
-
-        colhist$Serial2[k]<-sub$NewSerialNumber[2]
-        colhist$Serial2Start[k]<-colhist$Serial1End[k]
-        colhist$Serial2End[k]<-max(sub[,mortdate][2])
-
-      }
-
-      if(nrow(sub) >1 & length(unique(sub$NewSerialNumber)) == 3){
-        colhist$AnimalID[k]<-sub[,idcol][1]
-        colhist$Serial1[k]<-sub$NewSerialNumber[1]
-        colhist$Serial1Start[k]<-sub[,capdate][1]
-        colhist$Serial1End[k]<-sub[,capdate][2]
-
-        colhist$Serial2[k]<-sub$NewSerialNumber[2]
-        colhist$Serial2Start[k]<-colhist$Serial1End[k]
-        colhist$Serial2End[k]<-max(sub[,capdate][3])
-
-        colhist$Serial3[k]<-sub$NewSerialNumber[3]
-        colhist$Serial3Start[k]<-colhist$Serial2End[k]
-        colhist$Serial3End[k]<-max(sub[,mortdate])
-
-      }
-
-      print(uni[k])
-    }
     colhist<-colhist[complete.cases(colhist[,"AnimalID"]),]
 
 
 
-  }
+
 
 
   return(colhist)
