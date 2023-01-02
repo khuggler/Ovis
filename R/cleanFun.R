@@ -22,17 +22,20 @@
 
 
 
-cleanFun<-function (data, projectedproj, fixstat = "X2D.3D", hdopC = "dop", cval = 3,
+cleanFun<-function (data, projectedproj, fixstat = "X2D.3D", hdopC = "HDOP", cval = 3,
                     hval = 10, filename){
 
 
     rawDat <- data
+    #rawDat<-rawDat[rawDat@coords[,1]<(-50),]
     data<-rawDat
     id <- as.data.frame(sp::spTransform(data, projectedproj))
     colnames(id)[(ncol(id)-1):ncol(id)] <- c("Easting", "Northing")
     id$chk<-paste(id$IdCol,id$TelemDate,sep='_')
     id<-id[!duplicated(id$chk),]
     id<-id[,-(ncol(id))]
+
+
 
     t <- Ovis::trajfun(id, "TelemDate", "Easting", "Northing",
                        "IdCol")
@@ -53,12 +56,12 @@ cleanFun<-function (data, projectedproj, fixstat = "X2D.3D", hdopC = "dop", cval
     sp::coordinates(data) <- ~Easting + Northing
     sp::proj4string(data) <- projectedproj
 
-    if(hdopC %in% names(data)){
-    val <- as.numeric(quantile(data@data[,hdopC], na.rm = T, probs = seq(0,
+    if('HDOP' %in% names(data)){
+    val <- as.numeric(quantile(data@data$HDOP, na.rm = T, probs = seq(0,
                                                                       1, 0.1))[hval])
     hdr <- data[which(data@data[, hdopC] > val), ]
     }
-    if(!hdopC %in% names(data)){
+    if(!'HDOP' %in% names(data)){
       hdr<-data.frame()
     }
 
