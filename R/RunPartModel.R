@@ -207,10 +207,8 @@ print('Maps are done')
   mdat<-as.data.frame(Cdat[[1]])
   mdat$IdCol<-as.character(mdat$IdCol)
 
-
-
-
-  tim<-paste(strftime(Sys.time(),format='%Y'),'-', subsetmonth, '-01 00:00:00',sep='')
+# remove the -1 later in the year
+  tim<-paste(as.numeric(strftime(Sys.time(),format='%Y'))-1,'-', subsetmonth, '-01 00:00:00',sep='')
   mdat<-mdat[which(mdat$TelemDate>=as.POSIXct(tim,'%Y-%m-%d %H:%M:%S',tz='')),]
 
 
