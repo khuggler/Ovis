@@ -57,12 +57,12 @@ cleanFun<-function (data, projectedproj, fixstat = "X2D.3D", hdopC = "HDOP", cva
     sp::coordinates(data) <- ~Easting + Northing
     sp::proj4string(data) <- projectedproj
 
-    if('HDOP' %in% names(data)){
-    val <- as.numeric(quantile(data@data$HDOP, na.rm = T, probs = seq(0,
+    if(hdopC %in% names(data)){
+    val <- as.numeric(quantile(data@data[,hdopC], na.rm = T, probs = seq(0,
                                                                       1, 0.1))[hval])
     hdr <- data[which(data@data[, hdopC] > val), ]
     }
-    if(!'HDOP' %in% names(data)){
+    if(!hdopC %in% names(data)){
       hdr<-data.frame()
     }
 

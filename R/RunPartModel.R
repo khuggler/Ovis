@@ -196,7 +196,7 @@ print('Maps are done')
 
 
 
-
+  dat2<-dat2[complete.cases(dat2$x),]
   # make spatial here to clean data
   sp::coordinates(dat2)<-c('x', 'y')
   sp::proj4string(dat2)<-gpsproj
