@@ -8,7 +8,7 @@ cleanFun(
   data,
   projectedproj,
   fixstat = "X2D.3D",
-  hdopC = "HDOP",
+  hdopC = "dop",
   cval = 3,
   hval = 10,
   filename

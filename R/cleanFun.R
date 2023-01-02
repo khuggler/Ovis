@@ -22,7 +22,7 @@
 
 
 
-cleanFun<-function (data, projectedproj, fixstat = "X2D.3D", hdopC = "HDOP", cval = 3,
+cleanFun<-function (data, projectedproj, fixstat = "X2D.3D", hdopC = "dop", cval = 3,
                     hval = 10, filename){
 
 
