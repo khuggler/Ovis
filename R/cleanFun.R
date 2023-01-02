@@ -37,6 +37,7 @@ cleanFun<-function (data, projectedproj, fixstat = "X2D.3D", hdopC = "HDOP", cva
 
 
 
+
     t <- Ovis::trajfun(id, "TelemDate", "Easting", "Northing",
                        "IdCol")
 
