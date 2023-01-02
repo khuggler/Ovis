@@ -27,16 +27,12 @@ cleanFun<-function (data, projectedproj, fixstat = "X2D.3D", hdopC = "dop", cval
 
 
     rawDat <- data
-    #rawDat<-rawDat[rawDat@coords[,1]<(-50),]
     data<-rawDat
     id <- as.data.frame(sp::spTransform(data, projectedproj))
     colnames(id)[(ncol(id)-1):ncol(id)] <- c("Easting", "Northing")
     id$chk<-paste(id$IdCol,id$TelemDate,sep='_')
     id<-id[!duplicated(id$chk),]
     id<-id[,-(ncol(id))]
-
-
-
 
     t <- Ovis::trajfun(id, "TelemDate", "Easting", "Northing",
                        "IdCol")
