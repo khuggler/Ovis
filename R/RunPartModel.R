@@ -23,6 +23,9 @@
 RunPartModel<-function(gpsdat, lookup, gpsproj, projectedproj,tempdir,subsetmonth,
                    ncpus, markdownpath, user, pass, from=NA,to=NA, attach = NA){
 
+  #gmailr::use_secret_file('C:/Users/khuggler/Desktop/EmailClient.json')
+  #gm_auth_configure(path = 'C:/Users/khuggler/Desktop/EmailClient.json')
+
   # create temporrary directories for products to be stored
   options(warn=-1)
   if(dir.exists(tempdir) == TRUE){
@@ -353,12 +356,23 @@ print('Recent locations finished')
 
   print('PDFs are made')
 
+  # my_email<-gm_mime() %>%
+  #   gm_to(c(to)) %>%
+  #   gm_from('blue.mtn.sheep@gmail.com') %>%
+  #   gm_subject(paste0("Parturition Model Updated ", Sys.time())) %>%
+  #   gm_text_body("This email contains the latest parturition model run.") %>%
+  #   gm_attach_file(attach[1]) %>%
+  #   gm_attach_file(attach[2]) %>%
+  #   gm_attach_file(attach[3])
+  #
+  # gm_send_message(my_email)
+
   mailR::send.mail(from = from,
             to = to,
             subject = paste0("Parturition Model Updated ", Sys.time()),
             body = "This email contains the latest parturition model run.",
             authenticate = TRUE,
-            smtp = list(host.name = "smtp.gmail.com", port = 587, user.name = user, passwd = pass, tls = TRUE), attach.files = attach)
+            smtp = list(host.name = "mail.gmx.com", port = 587, user.name = user, passwd = pass, tls = T), attach.files = attach)
 
 }
 
