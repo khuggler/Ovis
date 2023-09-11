@@ -64,7 +64,7 @@ sheep.gps<-function(keys, sheepdb, collarhistory, tzone, capcol, dateformat, mor
     all.dnld<-data.frame()
 
     for(i in 1:length(files)){
-      sub<-read.csv(files[[i]], stringsAsFactors = F)
+      sub<-read.csv(files[[i]], stringsAsFactors = F, fileEncoding = 'latin1')
       #aid<-sapply(strsplit(as.character(files[[i]]), "\\.csv"), "[", 1)
       #aid<-sapply(strsplit(as.character(aid), "_GPS"), "[", 1)
       #aid<-sapply(strsplit(as.character(aid), "/"), "[", 7)
@@ -100,6 +100,7 @@ sheep.gps<-function(keys, sheepdb, collarhistory, tzone, capcol, dateformat, mor
 
     all.dnld$Date<-as.Date(all.dnld$Date, format = "%m/%d/%Y")
     sheep.dat$Date<-as.Date(sheep.dat$Date, format = "%Y-%m-%d")
+    sheep.dat<-sheep.dat[, names(sheep.dat) %in% names(all.dnld)]
 
     sheep.dat<-rbind(sheep.dat, all.dnld)
     sheep.dat<-sheep.dat[with(sheep.dat, order(-idcollar, acquisitiontime)),]
@@ -110,6 +111,8 @@ sheep.gps<-function(keys, sheepdb, collarhistory, tzone, capcol, dateformat, mor
 
 
     sheep.dat<-sheep.dat[!duplicated(sheep.dat[, c('idcollar', 'id')]),]
+
+
 
 
   }
