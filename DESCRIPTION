@@ -14,11 +14,9 @@ License: None
 Imports: 
     survival,
     sp,
-    rgdal,
     ggplot2,
     ncdf4,
     raster,
-    rgeos,
     tidyr,
     lubridate,
     RCurl,
